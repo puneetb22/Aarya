@@ -1,4 +1,5 @@
 import React from 'react';
+import aaryatiLogoPath from '../../assets/aaryati-logo.png';
 
 interface LogoProps {
   variant?: 'icon' | 'full';
@@ -9,7 +10,7 @@ const Logo: React.FC<LogoProps> = ({ variant = 'icon', className = '' }) => {
   if (variant === 'full') {
     return (
       <img 
-        src="/assets/aaryati-logo.png" 
+        src={aaryatiLogoPath}
         alt="Aaryati Technologies" 
         className={`h-10 ${className}`}
       />

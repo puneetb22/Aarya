@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import { FaArrowRight, FaCode } from 'react-icons/fa';
+import architectureGif from '../../assets/architecture.gif';
 
 const FeatureHighlight = () => {
   return (
@@ -42,7 +43,7 @@ const FeatureHighlight = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <img 
-              src="/assets/architecture.gif" 
+              src={architectureGif} 
               alt="Mulesoft to Spring Boot architecture transformation" 
               className="rounded-xl shadow-lg w-full h-auto object-cover" 
             />

@@ -27,21 +27,21 @@ const Footer = () => {
           <div>
             <h4 className="text-white text-lg font-medium mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li><Link href="/"><a className="text-gray-400 hover:text-secondary">Home</a></Link></li>
-              <li><Link href="#services"><a className="text-gray-400 hover:text-secondary">Our Services</a></Link></li>
-              <li><Link href="#team"><a className="text-gray-400 hover:text-secondary">Meet The Team</a></Link></li>
-              <li><Link href="#blog"><a className="text-gray-400 hover:text-secondary">Latest Blog</a></Link></li>
-              <li><Link href="#contact"><a className="text-gray-400 hover:text-secondary">Contact Us</a></Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="/">Home</Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#services">Our Services</Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#team">Meet The Team</Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#blog">Latest Blog</Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#contact">Contact Us</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white text-lg font-medium mb-6">Solutions</h4>
             <ul className="space-y-3">
-              <li><Link href="#mule-spring"><a className="text-gray-400 hover:text-secondary">Mule to Spring Boot</a></Link></li>
-              <li><Link href="#api-migration"><a className="text-gray-400 hover:text-secondary">API Migration</a></Link></li>
-              <li><Link href="#enterprise"><a className="text-gray-400 hover:text-secondary">Enterprise Integration</a></Link></li>
-              <li><Link href="#connector"><a className="text-gray-400 hover:text-secondary">Connector Development</a></Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#mule-spring">Mule to Spring Boot</Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#api-migration">API Migration</Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#enterprise">Enterprise Integration</Link></li>
+              <li className="text-gray-400 hover:text-secondary"><Link href="#connector">Connector Development</Link></li>
             </ul>
           </div>
           
@@ -59,15 +59,21 @@ const Footer = () => {
               </Button>
             </div>
             <div className="flex space-x-4">
-              <Link href="#linkedin">
-                <a className="text-gray-400 hover:text-secondary"><FaLinkedin className="h-5 w-5" /></a>
-              </Link>
-              <Link href="#twitter">
-                <a className="text-gray-400 hover:text-secondary"><FaTwitter className="h-5 w-5" /></a>
-              </Link>
-              <Link href="#github">
-                <a className="text-gray-400 hover:text-secondary"><FaGithub className="h-5 w-5" /></a>
-              </Link>
+              <div className="text-gray-400 hover:text-secondary">
+                <Link href="#linkedin">
+                  <FaLinkedin className="h-5 w-5 cursor-pointer" />
+                </Link>
+              </div>
+              <div className="text-gray-400 hover:text-secondary">
+                <Link href="#twitter">
+                  <FaTwitter className="h-5 w-5 cursor-pointer" />
+                </Link>
+              </div>
+              <div className="text-gray-400 hover:text-secondary">
+                <Link href="#github">
+                  <FaGithub className="h-5 w-5 cursor-pointer" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -76,15 +82,15 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">© Aaryati Technologies. All Rights Reserved.</p>
             <div className="flex space-x-6">
-              <Link href="#privacy">
-                <a className="text-gray-400 text-sm hover:text-secondary">Privacy Policy</a>
-              </Link>
-              <Link href="#terms">
-                <a className="text-gray-400 text-sm hover:text-secondary">Terms of Service</a>
-              </Link>
-              <Link href="#cookie">
-                <a className="text-gray-400 text-sm hover:text-secondary">Cookie Policy</a>
-              </Link>
+              <div className="text-gray-400 text-sm hover:text-secondary">
+                <Link href="#privacy">Privacy Policy</Link>
+              </div>
+              <div className="text-gray-400 text-sm hover:text-secondary">
+                <Link href="#terms">Terms of Service</Link>
+              </div>
+              <div className="text-gray-400 text-sm hover:text-secondary">
+                <Link href="#cookie">Cookie Policy</Link>
+              </div>
             </div>
           </div>
         </div>
