@@ -26,9 +26,9 @@ const TechnicalFeatureSection = () => {
   return (
     <section className="py-24 lg:py-32 relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background z-0"></div>
-      <div className="absolute top-0 -right-[400px] w-[800px] h-[800px] bg-blue-900/5 rounded-full blur-3xl"></div>
-      <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-blue-900/5 to-transparent z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-900/20 to-background z-0"></div>
+      <div className="absolute top-0 -right-[400px] w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-blue-500/10 to-transparent z-0"></div>
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">

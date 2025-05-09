@@ -22,10 +22,10 @@ const statistics = [
 const StatisticsSection = () => {
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute top-0 left-0 right-0 h-[200px] bg-gradient-to-b from-blue-900/5 to-transparent z-0"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-t from-blue-900/5 to-transparent z-0"></div>
-      <div className="absolute -left-[300px] top-[100px] w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl opacity-50"></div>
+      {/* Background gradient effects with color like Kong's design */}
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-500/90 via-violet-700/90 to-blue-700/90 opacity-85 z-0"></div>
+      <div className="absolute -left-[300px] top-[100px] w-[600px] h-[600px] bg-pink-300/20 rounded-full blur-3xl"></div>
+      <div className="absolute -right-[300px] bottom-[100px] w-[600px] h-[600px] bg-blue-300/20 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-16">
