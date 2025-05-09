@@ -8,6 +8,7 @@ import MulesoftConversion from "@/pages/Platform/MulesoftConversion";
 import Enterprise from "@/pages/Solutions/Enterprise";
 import Resources from "@/pages/Resources";
 import Company from "@/pages/Company";
+import ContactUs from "@/pages/ContactUs";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/solutions/enterprise" component={Enterprise} />
           <Route path="/resources" component={Resources} />
           <Route path="/company" component={Company} />
+          <Route path="/contact" component={ContactUs} />
           <Route component={NotFound} />
         </Switch>
       </main>
