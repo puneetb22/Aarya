@@ -57,27 +57,42 @@ const navItems = [
 ];
 
 const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
+  const [location] = useLocation();
+  const isActive = item.href && (location === item.href || location.startsWith(`${item.href}/`));
+
   if (item.items) {
     return (
       <Popover>
         <PopoverTrigger asChild>
-          <button className="flex items-center px-4 py-2 text-gray-300 hover:text-white transition-colors">
+          <Link href={item.href || '#'} className={cn(
+            "flex items-center px-4 py-2 transition-colors",
+            isActive 
+              ? "text-primary font-medium" 
+              : "text-gray-300 hover:text-white"
+          )}>
             {item.label}
             <FiChevronDown className="ml-1 h-4 w-4 opacity-60" />
-          </button>
+          </Link>
         </PopoverTrigger>
         <PopoverContent className="w-56 p-0 bg-background border border-accent" align="start">
           <div className="grid gap-1 p-2">
-            {item.href && (
-              <Link href={item.href} className="block px-3 py-2 hover:bg-accent rounded-md text-gray-300 hover:text-white transition-colors font-medium border-b border-accent/10 mb-1 pb-3">
-                All {item.label}
-              </Link>
-            )}
-            {item.items.map((subItem: any, idx: number) => (
-              <Link key={idx} href={subItem.href} className="block px-3 py-2 hover:bg-accent rounded-md text-gray-300 hover:text-white transition-colors">
-                {subItem.label}
-              </Link>
-            ))}
+            {item.items.map((subItem: any, idx: number) => {
+              const isSubActive = subItem.href && location === subItem.href;
+              return (
+                <Link 
+                  key={idx} 
+                  href={subItem.href} 
+                  className={cn(
+                    "block px-3 py-2 hover:bg-accent rounded-md transition-colors",
+                    isSubActive 
+                      ? "text-primary font-medium" 
+                      : "text-gray-300 hover:text-white"
+                  )}
+                >
+                  {subItem.label}
+                </Link>
+              );
+            })}
           </div>
         </PopoverContent>
       </Popover>
@@ -85,7 +100,15 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
   }
 
   return (
-    <Link href={item.href || '#'} className="inline-flex items-center px-4 py-2 text-gray-300 hover:text-white transition-colors">
+    <Link 
+      href={item.href || '#'} 
+      className={cn(
+        "inline-flex items-center px-4 py-2 transition-colors",
+        isActive 
+          ? "text-primary font-medium" 
+          : "text-gray-300 hover:text-white"
+      )}
+    >
       {item.label}
     </Link>
   );
@@ -156,32 +179,51 @@ const Header = () => {
                       {navItems.map((item, idx) => (
                         item.items ? (
                           <AccordionItem key={idx} value={`item-${idx}`} className="border-b border-accent/10">
-                            <AccordionTrigger className="px-4 py-3 text-gray-300 hover:text-white">
-                              {item.label}
+                            <AccordionTrigger className={cn(
+                              "px-4 py-3 hover:text-white",
+                              item.href && (location === item.href || location.startsWith(`${item.href}/`))
+                                ? "text-primary font-medium"
+                                : "text-gray-300" 
+                            )}>
+                              <SheetClose asChild>
+                                <Link href={item.href || '#'} className="flex-1">{item.label}</Link>
+                              </SheetClose>
                             </AccordionTrigger>
                             <AccordionContent>
                               <div className="pl-4 space-y-1 mb-2">
-                                {item.href && (
-                                  <SheetClose asChild>
-                                    <Link href={item.href} className="flex px-4 py-2 text-gray-300 hover:text-white font-medium border-b border-accent/10 mb-1 pb-2">
-                                      All {item.label}
-                                    </Link>
-                                  </SheetClose>
-                                )}
-                                {item.items.map((subItem: any, subIdx: number) => (
-                                  <SheetClose asChild key={subIdx}>
-                                    <Link href={subItem.href} className="flex px-4 py-2 text-gray-400 hover:text-white">
-                                      {subItem.label}
-                                    </Link>
-                                  </SheetClose>
-                                ))}
+                                {item.items.map((subItem: any, subIdx: number) => {
+                                  const isSubActive = subItem.href && location === subItem.href;
+                                  return (
+                                    <SheetClose asChild key={subIdx}>
+                                      <Link 
+                                        href={subItem.href} 
+                                        className={cn(
+                                          "flex px-4 py-2 hover:text-white",
+                                          isSubActive 
+                                            ? "text-primary font-medium" 
+                                            : "text-gray-400"
+                                        )}
+                                      >
+                                        {subItem.label}
+                                      </Link>
+                                    </SheetClose>
+                                  );
+                                })}
                               </div>
                             </AccordionContent>
                           </AccordionItem>
                         ) : (
                           <div key={idx} className="border-b border-accent/10">
                             <SheetClose asChild>
-                              <Link href={item.href || '#'} className="flex px-4 py-3 text-gray-300 hover:text-white w-full">
+                              <Link 
+                                href={item.href || '#'} 
+                                className={cn(
+                                  "flex px-4 py-3 hover:text-white w-full",
+                                  item.href && location === item.href 
+                                    ? "text-primary font-medium" 
+                                    : "text-gray-300"
+                                )}
+                              >
                                 {item.label}
                                 <FiChevronRight className="ml-auto opacity-60" />
                               </Link>
