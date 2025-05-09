@@ -210,7 +210,7 @@ const Company = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-blue-200 text-blue-700 hover:bg-blue-50" asChild>
+            <Button className="h-12 px-6 text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 shadow-sm" asChild>
               <Link href="#full-team">View Full Team</Link>
             </Button>
           </div>

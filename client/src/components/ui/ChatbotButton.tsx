@@ -102,14 +102,14 @@ const ChatbotButton = () => {
 
       {/* Floating chat button */}
       <motion.button
-        className="bg-blue-600 text-white rounded-full shadow-lg p-0 flex items-center justify-center h-16 w-16 relative overflow-hidden hover:bg-blue-700 transition-colors"
+        className="bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center h-16 w-16 relative overflow-hidden hover:bg-blue-700 transition-colors"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={toggleChat}
         onMouseEnter={() => !isChatOpen && setIsTooltipVisible(true)}
         onMouseLeave={() => setIsTooltipVisible(false)}
       >
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex items-center justify-center w-full h-full bg-white rounded-full m-1.5">
           <img 
             src={aaryatiIconPath}
             alt="Aaryati Chat" 
