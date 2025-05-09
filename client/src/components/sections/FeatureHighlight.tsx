@@ -42,9 +42,9 @@ const FeatureHighlight = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
-              alt="Code transformation visualization" 
-              className="rounded-xl shadow-lg w-full h-auto" 
+              src="/src/assets/architecture.gif" 
+              alt="Mulesoft to Spring Boot architecture transformation" 
+              className="rounded-xl shadow-lg w-full h-auto object-cover" 
             />
             
             <motion.div 

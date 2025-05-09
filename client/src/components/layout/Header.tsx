@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/ui/Logo';
-import { FiSearch, FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
+import { FiSearch, FiChevronDown, FiMenu, FiX, FiChevronRight } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const navItems = [
   {
@@ -84,7 +85,7 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
 };
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [location] = useLocation();
 
   return (
     <header className="border-b border-accent sticky top-0 bg-background z-50">
@@ -93,7 +94,7 @@ const Header = () => {
           <div className="flex items-center">
             <Link href="/">
               <a className="block mr-8">
-                <Logo />
+                <Logo variant="full" />
               </a>
             </Link>
             
@@ -126,42 +127,65 @@ const Header = () => {
                   <FiMenu className="h-6 w-6 text-white" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-background border-accent">
-                <div className="py-4 space-y-4 flex flex-col">
-                  {navItems.map((item, idx) => (
-                    <div key={idx}>
-                      {item.href ? (
-                        <Link href={item.href}>
-                          <a className="block px-4 py-2 text-white hover:bg-accent rounded-lg">
+              <SheetContent side="right" className="bg-background border-accent w-[300px] sm:w-[350px] overflow-y-auto">
+                <div className="flex flex-col space-y-2 mt-6">
+                  <div className="mb-6">
+                    <Logo variant="full" className="mx-auto" />
+                  </div>
+                
+                  <Accordion type="single" collapsible className="w-full">
+                    {navItems.map((item, idx) => (
+                      item.items ? (
+                        <AccordionItem key={idx} value={`item-${idx}`} className="border-b border-accent">
+                          <AccordionTrigger className="px-2 py-3 text-white hover:text-secondary">
                             {item.label}
-                          </a>
-                        </Link>
-                      ) : (
-                        <div>
-                          <div className="px-4 py-2 text-white font-medium">
-                            {item.label}
-                          </div>
-                          {item.items && (
-                            <div className="pl-4 space-y-2 mt-2">
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="pl-4 space-y-2 mb-2">
                               {item.items.map((subItem: any, subIdx: number) => (
-                                <Link key={subIdx} href={subItem.href}>
-                                  <a className="block px-4 py-2 text-gray-300 hover:bg-accent rounded-lg">
-                                    {subItem.label}
-                                  </a>
-                                </Link>
+                                <SheetClose asChild key={subIdx}>
+                                  <Link href={subItem.href}>
+                                    <a className="flex px-4 py-2 text-gray-300 hover:text-secondary rounded-lg">
+                                      {subItem.label}
+                                    </a>
+                                  </Link>
+                                </SheetClose>
                               ))}
                             </div>
-                          )}
+                          </AccordionContent>
+                        </AccordionItem>
+                      ) : (
+                        <div key={idx} className="border-b border-accent">
+                          <SheetClose asChild>
+                            <Link href={item.href || '#'}>
+                              <a className="flex px-4 py-3 text-white hover:text-secondary w-full">
+                                {item.label}
+                                <FiChevronRight className="ml-auto" />
+                              </a>
+                            </Link>
+                          </SheetClose>
                         </div>
-                      )}
+                      )
+                    ))}
+                  </Accordion>
+                  
+                  <div className="pt-4 space-y-4 border-t border-accent mt-4">
+                    <SheetClose asChild>
+                      <Link href="#login">
+                        <a className="flex px-4 py-2 text-white hover:text-secondary">
+                          Login
+                        </a>
+                      </Link>
+                    </SheetClose>
+                    
+                    <div className="px-4">
+                      <SheetClose asChild>
+                        <Button className="w-full" asChild>
+                          <Link href="#demo">Get a Demo</Link>
+                        </Button>
+                      </SheetClose>
                     </div>
-                  ))}
-                  <Link href="#login">
-                    <a className="block px-4 py-2 text-white hover:bg-accent rounded-lg">Login</a>
-                  </Link>
-                  <Link href="#demo">
-                    <a className="block px-4 py-2 text-white hover:bg-accent rounded-lg">Get a Demo</a>
-                  </Link>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
