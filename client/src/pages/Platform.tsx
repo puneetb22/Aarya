@@ -170,7 +170,7 @@ const Platform = () => {
                 <Link href="#schedule-demo">Schedule a Demo</Link>
               </Button>
               <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-white bg-transparent text-white hover:bg-blue-700" asChild>
-                <Link href="#contact">Contact Sales</Link>
+                <Link href="/contact">Contact Sales</Link>
               </Button>
             </div>
           </div>

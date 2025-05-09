@@ -56,7 +56,7 @@ const CallToAction = () => {
               </p>
               
               <Button className="group rounded-md h-11 w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white border-0" asChild>
-                <Link href="#contact">
+                <Link href="/contact">
                   <span>Contact Us</span>
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>

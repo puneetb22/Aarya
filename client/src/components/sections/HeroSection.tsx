@@ -62,7 +62,7 @@ const HeroSection = () => {
                 </Link>
               </Button>
               <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-slate-700 bg-slate-900/60 hover:bg-slate-800/80" asChild>
-                <Link href="#contact-us">Contact Us</Link>
+                <Link href="/contact">Contact Us</Link>
               </Button>
             </motion.div>
             

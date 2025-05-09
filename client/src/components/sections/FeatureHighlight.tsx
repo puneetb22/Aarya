@@ -37,7 +37,7 @@ const FeatureHighlight = () => {
                 </Link>
               </Button>
               <Button variant="outline" className="rounded-md h-11 border-gray-200 text-slate-800 hover:border-gray-300 hover:bg-gray-50" asChild>
-                <Link href="#contact">Contact Us</Link>
+                <Link href="/contact">Contact Us</Link>
               </Button>
             </div>
           </motion.div>
