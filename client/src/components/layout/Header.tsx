@@ -125,9 +125,9 @@ const Header = () => {
   const [location] = useLocation();
 
   return (
-    <header className="sticky top-0 bg-background/95 backdrop-blur-sm z-50 border-b border-accent/20">
+    <header className="sticky top-0 bg-slate-800/95 backdrop-blur-sm z-50 border-b border-accent/20">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex justify-between items-center py-3">
+        <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <div className="flex items-center mr-10">
               <Link href="/">
@@ -167,7 +167,7 @@ const Header = () => {
                   <FiMenu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-background border-l border-accent/20 w-[300px] sm:w-[350px] p-0 overflow-y-auto">
+              <SheetContent side="right" className="bg-slate-800 border-l border-accent/20 w-[300px] sm:w-[350px] p-0 overflow-y-auto">
                 <div className="flex flex-col h-full">
                   <div className="p-4 border-b border-accent/20 flex justify-between items-center">
                     <div className="flex items-center">
