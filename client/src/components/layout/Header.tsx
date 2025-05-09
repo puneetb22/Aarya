@@ -12,8 +12,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 const navItems = [
   {
     label: 'Platform',
+    href: '/platform',
     items: [
-      { label: 'Mulesoft Conversion', href: '#mulesoft-conversion' },
+      { label: 'Mulesoft Conversion', href: '/platform/mulesoft-conversion' },
       { label: 'Code Migration', href: '#code-migration' },
       { label: 'Integration', href: '#integration' },
     ],
@@ -21,7 +22,7 @@ const navItems = [
   {
     label: 'Solutions',
     items: [
-      { label: 'Enterprise', href: '#enterprise' },
+      { label: 'Enterprise', href: '/solutions/enterprise' },
       { label: 'Startups', href: '#startups' },
       { label: 'Financial Services', href: '#financial-services' },
     ],
@@ -32,6 +33,7 @@ const navItems = [
   },
   {
     label: 'Resources',
+    href: '/resources',
     items: [
       { label: 'Blog', href: '#blog' },
       { label: 'Documentation', href: '#documentation' },
@@ -40,6 +42,7 @@ const navItems = [
   },
   {
     label: 'Company',
+    href: '/company',
     items: [
       { label: 'About Us', href: '#about-us' },
       { label: 'Team', href: '#team' },
@@ -65,6 +68,11 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
         </PopoverTrigger>
         <PopoverContent className="w-56 p-0 bg-background border border-accent" align="start">
           <div className="grid gap-1 p-2">
+            {item.href && (
+              <Link href={item.href} className="block px-3 py-2 hover:bg-accent rounded-md text-gray-300 hover:text-white transition-colors font-medium border-b border-accent/10 mb-1 pb-3">
+                All {item.label}
+              </Link>
+            )}
             {item.items.map((subItem: any, idx: number) => (
               <Link key={idx} href={subItem.href} className="block px-3 py-2 hover:bg-accent rounded-md text-gray-300 hover:text-white transition-colors">
                 {subItem.label}
@@ -153,6 +161,13 @@ const Header = () => {
                             </AccordionTrigger>
                             <AccordionContent>
                               <div className="pl-4 space-y-1 mb-2">
+                                {item.href && (
+                                  <SheetClose asChild>
+                                    <Link href={item.href} className="flex px-4 py-2 text-gray-300 hover:text-white font-medium border-b border-accent/10 mb-1 pb-2">
+                                      All {item.label}
+                                    </Link>
+                                  </SheetClose>
+                                )}
                                 {item.items.map((subItem: any, subIdx: number) => (
                                   <SheetClose asChild key={subIdx}>
                                     <Link href={subItem.href} className="flex px-4 py-2 text-gray-400 hover:text-white">
