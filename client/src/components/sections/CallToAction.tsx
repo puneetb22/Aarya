@@ -55,7 +55,7 @@ const CallToAction = () => {
                 Begin your journey to Spring Boot today. Our streamlined onboarding process will have you up and running in no time.
               </p>
               
-              <Button variant="outline" className="group rounded-md h-11 w-full sm:w-auto bg-slate-900 text-white hover:bg-slate-800 border-0" asChild>
+              <Button className="group rounded-md h-11 w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white border-0" asChild>
                 <Link href="#contact">
                   <span>Contact Us</span>
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
