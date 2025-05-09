@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const navItems = [
   {
@@ -55,32 +56,30 @@ const navItems = [
 const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
   if (item.items) {
     return (
-      <div className="dropdown group">
-        <button className="flex items-center px-4 py-2 text-white hover:text-secondary">
-          {item.label}
-          <FiChevronDown className="ml-2 text-xs" />
-        </button>
-        <div className="dropdown-content mt-1 p-4">
-          <div className="grid grid-cols-1 gap-2">
+      <Popover>
+        <PopoverTrigger asChild>
+          <button className="flex items-center px-4 py-2 text-gray-300 hover:text-white transition-colors">
+            {item.label}
+            <FiChevronDown className="ml-1 h-4 w-4 opacity-60" />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-56 p-0 bg-background border border-accent" align="start">
+          <div className="grid gap-1 p-2">
             {item.items.map((subItem: any, idx: number) => (
-              <div key={idx} className="block px-3 py-2 hover:bg-accent rounded-lg text-white hover:text-secondary transition-colors">
-                <Link href={subItem.href}>
-                  {subItem.label}
-                </Link>
-              </div>
+              <Link key={idx} href={subItem.href} className="block px-3 py-2 hover:bg-accent rounded-md text-gray-300 hover:text-white transition-colors">
+                {subItem.label}
+              </Link>
             ))}
           </div>
-        </div>
-      </div>
+        </PopoverContent>
+      </Popover>
     );
   }
 
   return (
-    <div className="text-white px-4 py-2 hover:text-secondary">
-      <Link href={item.href || '#'}>
-        {item.label}
-      </Link>
-    </div>
+    <Link href={item.href || '#'} className="inline-flex items-center px-4 py-2 text-gray-300 hover:text-white transition-colors">
+      {item.label}
+    </Link>
   );
 };
 
@@ -88,104 +87,113 @@ const Header = () => {
   const [location] = useLocation();
 
   return (
-    <header className="border-b border-accent sticky top-0 bg-background z-50">
+    <header className="sticky top-0 bg-background/95 backdrop-blur-sm z-50 border-b border-accent/20">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
           <div className="flex items-center">
             <div className="flex items-center mr-8">
               <Link href="/">
                 <div className="flex items-center">
-                  <Logo variant="icon" />
-                  <span className="ml-3 text-2xl font-bold text-white">Aaryati</span>
+                  <Logo variant="icon" className="h-9 w-9" />
+                  <span className="ml-2 text-xl font-semibold text-white">Aaryati</span>
                 </div>
               </Link>
             </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex">
+            <nav className="hidden lg:flex items-center space-x-1">
               {navItems.map((item, idx) => (
                 <DesktopNavItem key={idx} item={item} />
               ))}
             </nav>
           </div>
           
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="text-white hidden lg:flex hover:text-secondary">
-              <FiSearch className="h-5 w-5" />
+          <div className="flex items-center space-x-3">
+            <Button variant="ghost" size="icon" className="text-gray-300 hidden lg:flex hover:text-white hover:bg-accent/40">
+              <FiSearch className="h-4 w-4" />
             </Button>
-            <div className="text-white hidden lg:inline-block hover:text-secondary">
-              <Link href="#login">Login</Link>
-            </div>
-            <Button variant="outline" className="hidden lg:inline-flex" asChild>
+            <Link href="#login" className="text-gray-300 hidden lg:inline-block hover:text-white text-sm px-3 py-2">
+              Login
+            </Link>
+            <Button variant="outline" className="hidden lg:inline-flex rounded-md text-sm font-medium border-accent/50 hover:border-accent/80 text-white" asChild>
               <Link href="#demo">Get a Demo</Link>
             </Button>
-            <Button variant="default" asChild>
+            <Button variant="default" className="rounded-md text-sm font-medium bg-primary hover:bg-primary/90" asChild>
               <Link href="#free">Start for Free</Link>
             </Button>
             
             {/* Mobile menu button */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden">
-                  <FiMenu className="h-6 w-6 text-white" />
+                <Button variant="ghost" size="icon" className="lg:hidden text-gray-300 hover:text-white hover:bg-accent/40">
+                  <FiMenu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-background border-accent w-[300px] sm:w-[350px] overflow-y-auto">
-                <div className="flex flex-col space-y-2 mt-6">
-                  <div className="mb-6 flex flex-col items-center">
-                    <Logo variant="icon" className="mx-auto" />
-                    <span className="mt-3 text-2xl font-bold text-white">Aaryati</span>
+              <SheetContent side="right" className="bg-background border-l border-accent/20 w-[300px] sm:w-[350px] p-0 overflow-y-auto">
+                <div className="flex flex-col h-full">
+                  <div className="p-4 border-b border-accent/20 flex justify-between items-center">
+                    <div className="flex items-center">
+                      <Logo variant="icon" className="h-8 w-8" />
+                      <span className="ml-2 text-lg font-semibold text-white">Aaryati</span>
+                    </div>
+                    <SheetTrigger asChild>
+                      <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                        <FiX className="h-5 w-5" />
+                      </Button>
+                    </SheetTrigger>
                   </div>
                 
-                  <Accordion type="single" collapsible className="w-full">
-                    {navItems.map((item, idx) => (
-                      item.items ? (
-                        <AccordionItem key={idx} value={`item-${idx}`} className="border-b border-accent">
-                          <AccordionTrigger className="px-2 py-3 text-white hover:text-secondary">
-                            {item.label}
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="pl-4 space-y-2 mb-2">
-                              {item.items.map((subItem: any, subIdx: number) => (
-                                <SheetClose asChild key={subIdx}>
-                                  <div className="flex px-4 py-2 text-gray-300 hover:text-secondary rounded-lg">
-                                    <Link href={subItem.href}>
+                  <div className="flex-1 overflow-y-auto py-2">
+                    <Accordion type="single" collapsible className="w-full">
+                      {navItems.map((item, idx) => (
+                        item.items ? (
+                          <AccordionItem key={idx} value={`item-${idx}`} className="border-b border-accent/10">
+                            <AccordionTrigger className="px-4 py-3 text-gray-300 hover:text-white">
+                              {item.label}
+                            </AccordionTrigger>
+                            <AccordionContent>
+                              <div className="pl-4 space-y-1 mb-2">
+                                {item.items.map((subItem: any, subIdx: number) => (
+                                  <SheetClose asChild key={subIdx}>
+                                    <Link href={subItem.href} className="flex px-4 py-2 text-gray-400 hover:text-white">
                                       {subItem.label}
                                     </Link>
-                                  </div>
-                                </SheetClose>
-                              ))}
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      ) : (
-                        <div key={idx} className="border-b border-accent">
-                          <SheetClose asChild>
-                            <div className="flex px-4 py-3 text-white hover:text-secondary w-full">
-                              <Link href={item.href || '#'}>
+                                  </SheetClose>
+                                ))}
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ) : (
+                          <div key={idx} className="border-b border-accent/10">
+                            <SheetClose asChild>
+                              <Link href={item.href || '#'} className="flex px-4 py-3 text-gray-300 hover:text-white w-full">
                                 {item.label}
+                                <FiChevronRight className="ml-auto opacity-60" />
                               </Link>
-                              <FiChevronRight className="ml-auto" />
-                            </div>
-                          </SheetClose>
-                        </div>
-                      )
-                    ))}
-                  </Accordion>
+                            </SheetClose>
+                          </div>
+                        )
+                      ))}
+                    </Accordion>
+                  </div>
                   
-                  <div className="pt-4 space-y-4 border-t border-accent mt-4">
+                  <div className="border-t border-accent/20 p-4 space-y-3">
                     <SheetClose asChild>
-                      <div className="flex px-4 py-2 text-white hover:text-secondary">
-                        <Link href="#login">
-                          Login
-                        </Link>
-                      </div>
+                      <Link href="#login" className="block text-center py-2 text-gray-300 hover:text-white">
+                        Login
+                      </Link>
                     </SheetClose>
                     
-                    <div className="px-4">
+                    <div className="grid grid-cols-2 gap-3">
                       <SheetClose asChild>
-                        <Button className="w-full" asChild>
+                        <Button variant="outline" className="w-full text-sm rounded-md border-accent/50" asChild>
                           <Link href="#demo">Get a Demo</Link>
+                        </Button>
+                      </SheetClose>
+                      
+                      <SheetClose asChild>
+                        <Button className="w-full text-sm rounded-md" asChild>
+                          <Link href="#free">Start for Free</Link>
                         </Button>
                       </SheetClose>
                     </div>
