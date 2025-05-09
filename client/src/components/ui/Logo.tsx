@@ -13,7 +13,7 @@ const Logo: React.FC<LogoProps> = ({ variant = 'icon', className = '' }) => {
       <img 
         src={aaryatiLogoPath}
         alt="Aaryati Technologies" 
-        className={`h-10 ${className}`}
+        className={`h-12 ${className}`}
       />
     );
   }
@@ -22,7 +22,7 @@ const Logo: React.FC<LogoProps> = ({ variant = 'icon', className = '' }) => {
     <img 
       src={aaryatiIconPath}
       alt="Aaryati" 
-      className={`h-12 w-12 ${className}`}
+      className={`h-14 w-14 ${className}`}
     />
   );
 };

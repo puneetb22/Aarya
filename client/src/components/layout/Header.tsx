@@ -129,11 +129,11 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center py-3">
           <div className="flex items-center">
-            <div className="flex items-center mr-8">
+            <div className="flex items-center mr-10">
               <Link href="/">
                 <div className="flex items-center">
-                  <Logo variant="icon" className="h-9 w-9" />
-                  <span className="ml-2 text-xl font-semibold text-white">Aaryati</span>
+                  <Logo variant="icon" className="h-11 w-11" />
+                  <span className="ml-2 text-2xl font-semibold text-white">Aaryati</span>
                 </div>
               </Link>
             </div>
@@ -171,8 +171,8 @@ const Header = () => {
                 <div className="flex flex-col h-full">
                   <div className="p-4 border-b border-accent/20 flex justify-between items-center">
                     <div className="flex items-center">
-                      <Logo variant="icon" className="h-8 w-8" />
-                      <span className="ml-2 text-lg font-semibold text-white">Aaryati</span>
+                      <Logo variant="icon" className="h-10 w-10" />
+                      <span className="ml-2 text-xl font-semibold text-white">Aaryati</span>
                     </div>
                     <SheetTrigger asChild>
                       <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
