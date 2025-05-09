@@ -9,9 +9,9 @@ const Logo: React.FC<LogoProps> = ({ variant = 'icon', className = '' }) => {
   if (variant === 'full') {
     return (
       <img 
-        src="/src/assets/aaryati-logo.png" 
+        src="/assets/aaryati-logo.png" 
         alt="Aaryati Technologies" 
-        className={`h-8 ${className}`}
+        className={`h-10 ${className}`}
       />
     );
   }

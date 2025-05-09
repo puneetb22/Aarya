@@ -39,9 +39,9 @@ const TechnicalFeatureSection = () => {
             transition={{ duration: 0.5 }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
-              alt="Software development and API integration" 
-              className="rounded-xl shadow-lg w-full h-auto" 
+              src="/assets/architecture.gif" 
+              alt="Mulesoft to Spring Boot architecture transformation" 
+              className="rounded-xl shadow-lg w-full h-auto object-cover" 
             />
           </motion.div>
           
