@@ -92,9 +92,12 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <div className="block mr-8">
+            <div className="flex items-center mr-8">
               <Link href="/">
-                <Logo variant="icon" />
+                <div className="flex items-center">
+                  <Logo variant="icon" />
+                  <span className="ml-3 text-2xl font-bold text-white">Aaryati</span>
+                </div>
               </Link>
             </div>
             
@@ -129,8 +132,9 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="bg-background border-accent w-[300px] sm:w-[350px] overflow-y-auto">
                 <div className="flex flex-col space-y-2 mt-6">
-                  <div className="mb-6">
+                  <div className="mb-6 flex flex-col items-center">
                     <Logo variant="icon" className="mx-auto" />
+                    <span className="mt-3 text-2xl font-bold text-white">Aaryati</span>
                   </div>
                 
                   <Accordion type="single" collapsible className="w-full">
