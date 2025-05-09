@@ -7,10 +7,10 @@ import { FaArrowRight } from 'react-icons/fa';
 const CallToAction = () => {
   return (
     <section className="py-24 lg:py-32 relative overflow-hidden">
-      {/* Background with light color like Kong's design */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-blue-50 z-0"></div>
-      <div className="absolute -left-[400px] top-0 w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-3xl"></div>
-      <div className="absolute -right-[400px] bottom-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl"></div>
+      {/* Clean white background for a professional look */}
+      <div className="absolute inset-0 bg-white z-0"></div>
+      <div className="absolute -left-[400px] top-0 w-[800px] h-[800px] bg-blue-50/40 rounded-full blur-3xl"></div>
+      <div className="absolute -right-[400px] bottom-0 w-[800px] h-[800px] bg-blue-50/40 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
@@ -19,9 +19,9 @@ const CallToAction = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white/90 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative"
+            className="bg-white rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent rounded-xl"></div>
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-t-xl"></div>
             
             <div className="relative z-10">
               <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Request Demo</h2>
@@ -44,9 +44,9 @@ const CallToAction = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white/90 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative"
+            className="bg-white rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent rounded-xl"></div>
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-t-xl"></div>
             
             <div className="relative z-10">
               <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Get Started</h2>
