@@ -1,6 +1,7 @@
 import { Route, Switch } from "wouter";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ChatbotButton from "@/components/ui/ChatbotButton";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
 import Platform from "@/pages/Platform";
@@ -27,6 +28,7 @@ function App() {
         </Switch>
       </main>
       <Footer />
+      <ChatbotButton />
     </>
   );
 }
