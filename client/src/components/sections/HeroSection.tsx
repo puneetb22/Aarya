@@ -14,11 +14,12 @@ const clientLogos = [
 const HeroSection = () => {
   return (
     <section className="pt-14 pb-24 md:pt-20 md:pb-32 relative overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 bg-background bg-opacity-90 z-0"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-blue-900/10 via-background/5 to-transparent z-0"></div>
-      <div className="absolute -top-[500px] -left-[300px] w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute -right-[400px] top-[100px] w-[700px] h-[700px] bg-primary/5 rounded-full blur-3xl"></div>
+      {/* Background gradient effects inspired by Kong */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 z-0"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-blue-900/20 via-background/5 to-transparent z-0"></div>
+      <div className="absolute top-0 right-0 w-full h-96 bg-gradient-to-b from-blue-600/10 via-purple-600/10 to-transparent z-0"></div>
+      <div className="absolute -top-[500px] -left-[300px] w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute -right-[400px] top-[100px] w-[700px] h-[700px] bg-violet-500/10 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
