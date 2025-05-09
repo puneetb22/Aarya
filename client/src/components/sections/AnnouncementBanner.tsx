@@ -21,11 +21,11 @@ const AnnouncementBanner = () => {
             </div>
           </div>
           <div className="ml-4">
-            <Link href="#new-version">
-              <a className="text-white hover:text-secondary">
+            <div className="text-white hover:text-secondary cursor-pointer">
+              <Link href="#new-version">
                 <FaArrowRight className="h-4 w-4" />
-              </a>
-            </Link>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
