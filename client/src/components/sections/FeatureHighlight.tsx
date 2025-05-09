@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import { FaArrowRight, FaCode } from 'react-icons/fa';
-import architectureGif from '@assets/IMG_3307.gif';
+import architectureGif from '@assets/Aaryati CodeGen design -2.gif';
 
 const FeatureHighlight = () => {
   return (
