@@ -2,34 +2,68 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
+import { FaArrowRight } from 'react-icons/fa';
 
 const CallToAction = () => {
   return (
-    <section className="py-16 lg:py-24 bg-card">
-      <div className="container mx-auto px-4 lg:px-8">
-        <motion.div 
-          className="text-center max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-lg font-medium text-secondary mb-3">Request Demo</h2>
-          <h3 className="text-3xl lg:text-4xl font-bold mb-8">Please Feel Free to Contact Us</h3>
+    <section className="py-24 lg:py-32 relative overflow-hidden">
+      {/* Background gradients and effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background z-0"></div>
+      <div className="absolute -left-[400px] top-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute -right-[400px] bottom-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-card/30 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-accent/20 shadow-lg relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent rounded-xl"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Request Demo</h2>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">See how it works</h3>
+              <p className="text-gray-300 mb-8">
+                Our team of experts will walk you through our MuleSoft to Spring Boot conversion platform and show you how it can transform your integration experience.
+              </p>
+              
+              <Button className="group rounded-md h-11 w-full sm:w-auto" asChild>
+                <Link href="#request-demo">
+                  <span>Schedule a Demo</span>
+                  <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
-            <Button size="lg" className="px-8" asChild>
-              <Link href="#request-demo">Request Call</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="px-8" asChild>
-              <Link href="#contact">Contact Us</Link>
-            </Button>
-          </div>
-          
-          <p className="text-gray-400 italic">
-            Join the growing list of organizations who have successfully migrated from MuleSoft to Spring Boot
-          </p>
-        </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-card/30 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-accent/20 shadow-lg relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent rounded-xl"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Get Started</h2>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">Ready to migrate?</h3>
+              <p className="text-gray-300 mb-8">
+                Begin your journey to Spring Boot today. Our streamlined onboarding process will have you up and running in no time.
+              </p>
+              
+              <Button variant="outline" className="group rounded-md h-11 border-accent/50 hover:border-accent w-full sm:w-auto" asChild>
+                <Link href="#contact">
+                  <span>Contact Us</span>
+                  <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
