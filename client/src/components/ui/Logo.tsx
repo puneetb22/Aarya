@@ -1,5 +1,5 @@
 import React from 'react';
-import aaryatiLogoPath from '../../assets/aaryati-logo.png';
+import aaryatiLogoPath from '@assets/Aaryati.png';
 
 interface LogoProps {
   variant?: 'icon' | 'full';
