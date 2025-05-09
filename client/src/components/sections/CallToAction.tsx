@@ -30,7 +30,7 @@ const CallToAction = () => {
                 Our team of experts will walk you through our MuleSoft to Spring Boot conversion platform and show you how it can transform your integration experience.
               </p>
               
-              <Button className="group rounded-md h-11 w-full sm:w-auto" asChild>
+              <Button className="group rounded-md h-11 w-full sm:w-auto bg-blue-500 hover:bg-blue-600" asChild>
                 <Link href="#request-demo">
                   <span>Schedule a Demo</span>
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
@@ -55,7 +55,7 @@ const CallToAction = () => {
                 Begin your journey to Spring Boot today. Our streamlined onboarding process will have you up and running in no time.
               </p>
               
-              <Button variant="outline" className="group rounded-md h-11 border-blue-200 hover:border-blue-400 text-blue-700 hover:text-blue-800 hover:bg-blue-50 w-full sm:w-auto" asChild>
+              <Button variant="outline" className="group rounded-md h-11 w-full sm:w-auto bg-slate-900 text-white hover:bg-slate-800 border-0" asChild>
                 <Link href="#contact">
                   <span>Contact Us</span>
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />

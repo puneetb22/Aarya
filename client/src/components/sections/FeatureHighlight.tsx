@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import { FaArrowRight, FaCode } from 'react-icons/fa';
 import architectureGif from '@assets/Aaryati CodeGen design -2.gif';
+import conversionLogo from '@assets/springboot1.png';
 
 const FeatureHighlight = () => {
   return (
@@ -24,18 +25,23 @@ const FeatureHighlight = () => {
           >
             <h2 className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">Revolutionize Code Transformation</h2>
             <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-slate-900">Effortless Mulesoft Code Conversion</h3>
+            
+            <div className="flex justify-center mb-8">
+              <img src={conversionLogo} alt="Mulesoft to Spring Boot conversion" className="h-32 w-auto max-w-[280px]" />
+            </div>
+            
             <p className="text-slate-600 mb-8 text-lg leading-relaxed">
               Transform your MuleSoft applications to Spring Boot with our automated conversion platform. Our industry-leading solution ensures a smooth migration with minimal manual intervention and maximum accuracy.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="group rounded-md h-11" asChild>
+              <Button className="group rounded-md h-11 bg-blue-500 hover:bg-blue-600" asChild>
                 <Link href="#request-demo">
                   <span>Request Demo</span>
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" className="rounded-md h-11 border-blue-200 text-blue-700 hover:border-blue-400 hover:bg-blue-50" asChild>
+              <Button variant="outline" className="rounded-md h-11 border-gray-200 text-slate-800 hover:border-gray-300 hover:bg-gray-50" asChild>
                 <Link href="#contact">Contact Us</Link>
               </Button>
             </div>
