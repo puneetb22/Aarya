@@ -36,7 +36,7 @@ const FeatureHighlight = () => {
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" className="rounded-md h-11 border-blue-300 text-blue-700 hover:border-blue-400 hover:bg-blue-50" asChild>
+              <Button variant="outline" className="rounded-md h-11 border-blue-300 text-white-700 hover:border-blue-400 hover:bg-blue-50" asChild>
                 <Link href="/contact">Contact Us</Link>
               </Button>
             </div>
