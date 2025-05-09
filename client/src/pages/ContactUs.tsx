@@ -28,9 +28,9 @@ import {
   FaMapMarkerAlt,
   FaPhone,
   FaLinkedin,
-  FaTwitter,
   FaGithub,
 } from 'react-icons/fa';
+import { SiX } from 'react-icons/si';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -168,7 +168,7 @@ const ContactUs = () => {
                       href="#twitter"
                       className="bg-slate-800 hover:bg-primary/20 transition-colors p-3 rounded-full text-gray-400 hover:text-primary"
                     >
-                      <FaTwitter className="w-5 h-5" />
+                      <SiX className="w-5 h-5" />
                     </a>
                     <a
                       href="#github"

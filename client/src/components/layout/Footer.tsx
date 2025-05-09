@@ -3,7 +3,8 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Logo from '@/components/ui/Logo';
-import { FaMapMarkerAlt, FaEnvelope, FaPaperPlane, FaLinkedin, FaTwitter, FaGithub, FaArrowRight } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPaperPlane, FaLinkedin, FaGithub, FaArrowRight } from 'react-icons/fa';
+import { SiX } from 'react-icons/si';
 
 // Footer link groups
 const footerLinks = [
@@ -83,7 +84,7 @@ const Footer = () => {
                     <FaLinkedin className="h-5 w-5" />
                   </Link>
                   <Link href="#twitter" className="text-gray-400 hover:text-white transition-colors">
-                    <FaTwitter className="h-5 w-5" />
+                    <SiX className="h-5 w-5" />
                   </Link>
                   <Link href="#github" className="text-gray-400 hover:text-white transition-colors">
                     <FaGithub className="h-5 w-5" />
