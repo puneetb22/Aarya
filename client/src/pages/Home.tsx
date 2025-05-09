@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
 import AnnouncementBanner from '@/components/sections/AnnouncementBanner';
 import HeroSection from '@/components/sections/HeroSection';
 import StatisticsSection from '@/components/sections/StatisticsSection';
@@ -25,7 +23,6 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <Header />
         <AnnouncementBanner />
         <HeroSection />
         <StatisticsSection />
@@ -33,7 +30,6 @@ const Home = () => {
         <FeatureHighlight />
         <TechnicalFeatureSection />
         <CallToAction />
-        <Footer />
       </motion.div>
     </>
   );

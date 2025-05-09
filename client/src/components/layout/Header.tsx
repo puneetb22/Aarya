@@ -64,15 +64,22 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
     return (
       <Popover>
         <PopoverTrigger asChild>
-          <Link href={item.href || '#'} className={cn(
-            "flex items-center px-4 py-2 transition-colors",
-            isActive 
-              ? "text-primary font-medium" 
-              : "text-gray-300 hover:text-white"
-          )}>
-            {item.label}
-            <FiChevronDown className="ml-1 h-4 w-4 opacity-60" />
-          </Link>
+          <div className="flex items-center">
+            <Link 
+              href={item.href || '#'} 
+              className={cn(
+                "px-4 py-2 transition-colors",
+                isActive 
+                  ? "text-primary font-medium" 
+                  : "text-gray-300 hover:text-white"
+              )}
+            >
+              {item.label}
+            </Link>
+            <button className="p-1 text-gray-300 hover:text-white">
+              <FiChevronDown className="h-4 w-4 opacity-60" />
+            </button>
+          </div>
         </PopoverTrigger>
         <PopoverContent className="w-56 p-0 bg-background border border-accent" align="start">
           <div className="grid gap-1 p-2">
@@ -179,16 +186,22 @@ const Header = () => {
                       {navItems.map((item, idx) => (
                         item.items ? (
                           <AccordionItem key={idx} value={`item-${idx}`} className="border-b border-accent/10">
-                            <AccordionTrigger className={cn(
-                              "px-4 py-3 hover:text-white",
-                              item.href && (location === item.href || location.startsWith(`${item.href}/`))
-                                ? "text-primary font-medium"
-                                : "text-gray-300" 
-                            )}>
-                              <SheetClose asChild>
-                                <Link href={item.href || '#'} className="flex-1">{item.label}</Link>
+                            <div className="flex px-4">
+                              <SheetClose asChild className="flex-grow">
+                                <Link 
+                                  href={item.href || '#'} 
+                                  className={cn(
+                                    "py-3 block",
+                                    item.href && (location === item.href || location.startsWith(`${item.href}/`))
+                                      ? "text-primary font-medium"
+                                      : "text-gray-300 hover:text-white" 
+                                  )}
+                                >
+                                  {item.label}
+                                </Link>
                               </SheetClose>
-                            </AccordionTrigger>
+                              <AccordionTrigger className="ml-auto"></AccordionTrigger>
+                            </div>
                             <AccordionContent>
                               <div className="pl-4 space-y-1 mb-2">
                                 {item.items.map((subItem: any, subIdx: number) => {
