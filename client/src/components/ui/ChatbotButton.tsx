@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '@/components/ui/Logo';
 import { MessageSquare, X } from 'lucide-react';
+import aaryatiIconPath from '@assets/A.png';
 
 const ChatbotButton = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
@@ -101,14 +102,20 @@ const ChatbotButton = () => {
 
       {/* Floating chat button */}
       <motion.button
-        className="bg-blue-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center h-16 w-16 relative overflow-hidden hover:bg-blue-700 transition-colors"
+        className="bg-blue-600 text-white rounded-full shadow-lg p-0 flex items-center justify-center h-16 w-16 relative overflow-hidden hover:bg-blue-700 transition-colors"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={toggleChat}
         onMouseEnter={() => !isChatOpen && setIsTooltipVisible(true)}
         onMouseLeave={() => setIsTooltipVisible(false)}
       >
-        <Logo variant="icon" className="h-10 w-10" />
+        <div className="flex items-center justify-center w-full h-full">
+          <img 
+            src={aaryatiIconPath}
+            alt="Aaryati Chat" 
+            className="h-9 w-9 object-contain" 
+          />
+        </div>
       </motion.button>
     </div>
   );
