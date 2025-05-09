@@ -157,7 +157,7 @@ const Header = () => {
               <Link href="#demo">Get a Demo</Link>
             </Button>
             <Button variant="default" className="rounded-md text-sm font-medium bg-primary hover:bg-primary/90" asChild>
-              <Link href="#free">Start for Free</Link>
+              <Link href="#free">Get Quote</Link>
             </Button>
             
             {/* Mobile menu button */}
