@@ -63,11 +63,11 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
         <div className="dropdown-content mt-1 p-4">
           <div className="grid grid-cols-1 gap-2">
             {item.items.map((subItem: any, idx: number) => (
-              <Link key={idx} href={subItem.href}>
-                <a className="block px-3 py-2 hover:bg-accent rounded-lg text-white hover:text-secondary transition-colors">
+              <div key={idx} className="block px-3 py-2 hover:bg-accent rounded-lg text-white hover:text-secondary transition-colors">
+                <Link href={subItem.href}>
                   {subItem.label}
-                </a>
-              </Link>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -76,11 +76,11 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
   }
 
   return (
-    <Link href={item.href || '#'}>
-      <a className="text-white px-4 py-2 hover:text-secondary">
+    <div className="text-white px-4 py-2 hover:text-secondary">
+      <Link href={item.href || '#'}>
         {item.label}
-      </a>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
@@ -92,11 +92,11 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <Link href="/">
-              <a className="block mr-8">
+            <div className="block mr-8">
+              <Link href="/">
                 <Logo variant="full" />
-              </a>
-            </Link>
+              </Link>
+            </div>
             
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex">
@@ -110,9 +110,9 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="text-white hidden lg:flex hover:text-secondary">
               <FiSearch className="h-5 w-5" />
             </Button>
-            <Link href="#login">
-              <a className="text-white hidden lg:inline-block hover:text-secondary">Login</a>
-            </Link>
+            <div className="text-white hidden lg:inline-block hover:text-secondary">
+              <Link href="#login">Login</Link>
+            </div>
             <Button variant="outline" className="hidden lg:inline-flex" asChild>
               <Link href="#demo">Get a Demo</Link>
             </Button>
@@ -144,11 +144,11 @@ const Header = () => {
                             <div className="pl-4 space-y-2 mb-2">
                               {item.items.map((subItem: any, subIdx: number) => (
                                 <SheetClose asChild key={subIdx}>
-                                  <Link href={subItem.href}>
-                                    <a className="flex px-4 py-2 text-gray-300 hover:text-secondary rounded-lg">
+                                  <div className="flex px-4 py-2 text-gray-300 hover:text-secondary rounded-lg">
+                                    <Link href={subItem.href}>
                                       {subItem.label}
-                                    </a>
-                                  </Link>
+                                    </Link>
+                                  </div>
                                 </SheetClose>
                               ))}
                             </div>
@@ -157,12 +157,12 @@ const Header = () => {
                       ) : (
                         <div key={idx} className="border-b border-accent">
                           <SheetClose asChild>
-                            <Link href={item.href || '#'}>
-                              <a className="flex px-4 py-3 text-white hover:text-secondary w-full">
+                            <div className="flex px-4 py-3 text-white hover:text-secondary w-full">
+                              <Link href={item.href || '#'}>
                                 {item.label}
-                                <FiChevronRight className="ml-auto" />
-                              </a>
-                            </Link>
+                              </Link>
+                              <FiChevronRight className="ml-auto" />
+                            </div>
                           </SheetClose>
                         </div>
                       )
@@ -171,11 +171,11 @@ const Header = () => {
                   
                   <div className="pt-4 space-y-4 border-t border-accent mt-4">
                     <SheetClose asChild>
-                      <Link href="#login">
-                        <a className="flex px-4 py-2 text-white hover:text-secondary">
+                      <div className="flex px-4 py-2 text-white hover:text-secondary">
+                        <Link href="#login">
                           Login
-                        </a>
-                      </Link>
+                        </Link>
+                      </div>
                     </SheetClose>
                     
                     <div className="px-4">
