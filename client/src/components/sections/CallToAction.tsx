@@ -13,13 +13,13 @@ const CallToAction = () => {
       <div className="absolute -right-[400px] bottom-0 w-[800px] h-[800px] bg-blue-50/40 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative"
+            className="bg-white rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative h-full flex flex-col"
           >
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-t-xl"></div>
             
@@ -44,7 +44,7 @@ const CallToAction = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative"
+            className="bg-white rounded-xl p-8 md:p-10 border border-blue-100 shadow-lg relative h-full flex flex-col"
           >
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-t-xl"></div>
             

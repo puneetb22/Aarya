@@ -25,11 +25,6 @@ const FeatureHighlight = () => {
           >
             <h2 className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">Revolutionize Code Transformation</h2>
             <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-slate-900">Effortless Mulesoft Code Conversion</h3>
-            
-            <div className="flex justify-center mb-8">
-              <img src={conversionLogo} alt="Mulesoft to Spring Boot conversion" className="h-32 w-auto max-w-[280px]" />
-            </div>
-            
             <p className="text-slate-600 mb-8 text-lg leading-relaxed">
               Transform your MuleSoft applications to Spring Boot with our automated conversion platform. Our industry-leading solution ensures a smooth migration with minimal manual intervention and maximum accuracy.
             </p>

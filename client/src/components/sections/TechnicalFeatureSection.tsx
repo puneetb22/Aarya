@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCheck, FaTerminal } from 'react-icons/fa';
 import architectureGif from '@assets/Aaryati CodeGen design -2.gif';
+import conversionLogo from '@assets/springboot1.png';
 
 const features = [
   {
@@ -69,6 +70,11 @@ const TechnicalFeatureSection = () => {
           >
             <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Technical Excellence</h2>
             <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Comprehensive Connector Support</h3>
+            
+            <div className="flex justify-center mb-8 p-6 bg-slate-900 rounded-xl">
+              <img src={conversionLogo} alt="Mulesoft to Spring Boot conversion" className="h-32 w-auto max-w-[280px]" />
+            </div>
+            
             <p className="text-gray-300 mb-8 text-lg leading-relaxed">
               Our platform supports the entire ecosystem of MuleSoft connectors, ensuring your migration covers all integration points.
             </p>
