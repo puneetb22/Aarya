@@ -94,7 +94,7 @@ const Header = () => {
           <div className="flex items-center">
             <div className="block mr-8">
               <Link href="/">
-                <Logo variant="full" />
+                <Logo variant="icon" />
               </Link>
             </div>
             
@@ -130,7 +130,7 @@ const Header = () => {
               <SheetContent side="right" className="bg-background border-accent w-[300px] sm:w-[350px] overflow-y-auto">
                 <div className="flex flex-col space-y-2 mt-6">
                   <div className="mb-6">
-                    <Logo variant="full" className="mx-auto" />
+                    <Logo variant="icon" className="mx-auto" />
                   </div>
                 
                   <Accordion type="single" collapsible className="w-full">
