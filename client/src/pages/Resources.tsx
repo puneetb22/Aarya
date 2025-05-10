@@ -150,10 +150,10 @@ const Resources = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button className="h-12 px-6 text-sm font-medium rounded-md bg-blue-500 hover:bg-blue-600" asChild>
-                <Link href="#latest-resources">Browse Latest Resources</Link>
+                <Link href="#blog">View Blog</Link>
               </Button>
               <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-slate-700 bg-slate-900/60 hover:bg-slate-800/80 text-white" asChild>
-                <Link href="#resource-library">View Full Library</Link>
+                <Link href="#documentation">View Documentation</Link>
               </Button>
             </div>
           </div>
@@ -342,6 +342,236 @@ const Resources = () => {
                 </Button>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section id="blog" className="py-20 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">INDUSTRY INSIGHTS</h2>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-gray-900">Blog</h3>
+            <p className="text-lg text-gray-600">
+              Latest news, insights, and thought leadership in the world of integration
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "5 Reasons to Migrate from Mulesoft to Spring Boot in 2025",
+                date: "May 5, 2025",
+                author: "Sarah Johnson",
+                excerpt: "Discover why more enterprises are making the switch to Spring Boot and how it's transforming their integration architecture.",
+                category: "Strategy"
+              },
+              {
+                title: "Dataweave vs Spring Expression Language: A Technical Comparison",
+                date: "April 22, 2025",
+                author: "Michael Chen",
+                excerpt: "A detailed analysis of the syntax, capabilities, and performance characteristics of these transformation languages.",
+                category: "Technical"
+              },
+              {
+                title: "Measuring ROI on Your Mulesoft Migration Project",
+                date: "April 10, 2025",
+                author: "David Williams",
+                excerpt: "How to build a business case and calculate the return on investment for your migration initiative.",
+                category: "Business"
+              }
+            ].map((post, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex flex-col h-full"
+              >
+                <div className="border-t-2 border-blue-500 pt-4 pb-6 flex-grow">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                      {post.category}
+                    </span>
+                    <span className="text-sm text-gray-500">{post.date}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">{post.title}</h3>
+                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                  <p className="text-sm text-gray-500">By {post.author}</p>
+                </div>
+                <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-800 font-medium group" asChild>
+                  <Link href={`#blog-${index + 1}`}>
+                    <span>Read more</span>
+                    <FaArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-blue-200 text-blue-700 hover:bg-blue-50" asChild>
+              <Link href="#all-blog-posts">View All Blog Posts</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Documentation Section */}
+      <section id="documentation" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">TECHNICAL RESOURCES</h2>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-gray-900">Documentation</h3>
+            <p className="text-lg text-gray-600">
+              Comprehensive guides, tutorials, and reference materials for developers
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Getting Started Guide",
+                description: "Everything you need to begin your migration journey from Mulesoft to Spring Boot.",
+                icon: FaFileAlt,
+                color: "bg-green-100 text-green-600"
+              },
+              {
+                title: "API Reference",
+                description: "Complete documentation of our conversion platform APIs and integration points.",
+                icon: FaExchangeAlt,
+                color: "bg-blue-100 text-blue-600"
+              },
+              {
+                title: "Migration Patterns",
+                description: "Common architectural patterns and solutions for migration challenges.",
+                icon: FaDatabase,
+                color: "bg-purple-100 text-purple-600"
+              },
+              {
+                title: "Connector Guides",
+                description: "Detailed guides for migrating specific Mulesoft connectors to Spring Boot equivalents.",
+                icon: FaPlayCircle,
+                color: "bg-red-100 text-red-600"
+              },
+              {
+                title: "Security Best Practices",
+                description: "Security considerations and implementation guides for your migration project.",
+                icon: FaLock,
+                color: "bg-yellow-100 text-yellow-600"
+              },
+              {
+                title: "Troubleshooting",
+                description: "Solutions for common issues encountered during the migration process.",
+                icon: FaShieldAlt,
+                color: "bg-indigo-100 text-indigo-600"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full border-gray-200 hover:border-blue-200 hover:shadow-md transition-all duration-300">
+                  <CardHeader>
+                    <div className={`inline-flex p-3 rounded-md ${item.color} mb-3`}>
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold">{item.title}</h3>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">{item.description}</p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-800 group" asChild>
+                      <Link href={`#doc-${index + 1}`}>
+                        <span>Read Documentation</span>
+                        <FaArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies Section */}
+      <section id="case-studies" className="py-20 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">SUCCESS STORIES</h2>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-gray-900">Case Studies</h3>
+            <p className="text-lg text-gray-600">
+              Real-world examples of successful migrations from Mulesoft to Spring Boot
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[
+              {
+                company: "Global Financial Services Leader",
+                title: "Bank Reduces Integration Costs by 40%",
+                industry: "Banking",
+                description: "One of the world's largest banks migrated 500+ APIs from Mulesoft to Spring Boot, resulting in substantial cost savings and performance improvements.",
+                metrics: ["40% cost reduction", "67% performance improvement", "6-month implementation"]
+              },
+              {
+                company: "E-Commerce Platform",
+                title: "Scaling for Black Friday: A Migration Success Story",
+                industry: "Retail",
+                description: "Learn how this e-commerce giant handled 10x their normal transaction volume after migrating their payment processing services to Spring Boot.",
+                metrics: ["10x throughput increase", "99.99% uptime", "3-month implementation"]
+              }
+            ].map((study, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <Card className="overflow-hidden h-full">
+                  <div className="flex flex-col h-full">
+                    <div className="bg-blue-900 text-white p-4">
+                      <span className="text-sm font-medium text-blue-300">{study.industry}</span>
+                      <h3 className="text-xl font-bold mt-1">{study.title}</h3>
+                    </div>
+                    <CardHeader className="pt-5">
+                      <div className="text-sm text-blue-600 font-semibold mb-1">{study.company}</div>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <p className="text-gray-600 mb-4">{study.description}</p>
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {study.metrics.map((metric, idx) => (
+                          <span key={idx} className="inline-block bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-sm font-semibold">
+                            {metric}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                    <CardFooter className="pt-0">
+                      <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-800 font-medium group" asChild>
+                        <Link href={`#case-study-${index + 1}`}>
+                          <span>Read full case study</span>
+                          <FaArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-blue-200 text-blue-700 hover:bg-blue-50" asChild>
+              <Link href="#all-case-studies">View All Case Studies</Link>
+            </Button>
           </div>
         </div>
       </section>
