@@ -4,23 +4,23 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaCode, FaRocket, FaTools } from 'react-icons/fa';
 
-// Simple, high-contrast logos with better visibility
+// Original simple text-based logos for better visibility
 const clientLogos = [
   {
-    url: "https://1000logos.net/wp-content/uploads/2020/09/Apigee-Logo-1280x720.png",
-    alt: "Apigee"
+    name: "Apigee",
+    color: "#0D69AF"
   },
   {
-    url: "https://1000logos.net/wp-content/uploads/2022/08/Datadog-Logo-768x432.png",
-    alt: "Datadog"
+    name: "Datadog",
+    color: "#632CA6"
   },
   {
-    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzMAbxiZ7hUVZF2l6Bq_HXBvzyT4YDwFLdig&usqp=CAU",
-    alt: "Kong Inc"
+    name: "Kong",
+    color: "#00997B"
   },
   {
-    url: "https://1000logos.net/wp-content/uploads/2021/11/Docker-Logo-2013-768x432.png",
-    alt: "Docker"
+    name: "Docker",
+    color: "#2496ED"
   }
 ];
 
@@ -87,12 +87,16 @@ const HeroSection = () => {
               <p className="text-gray-400 mb-6 text-sm">Trusted by leading enterprises worldwide</p>
               <div className="flex flex-wrap gap-8 items-center justify-center">
                 {clientLogos.map((logo, index) => (
-                  <div key={index} className="flex items-center justify-center bg-white p-2 rounded-lg shadow-md" style={{ width: '120px', height: '60px' }}>
-                    <img 
-                      src={logo.url} 
-                      alt={logo.alt} 
-                      className="max-h-full max-w-full object-contain" 
-                    />
+                  <div 
+                    key={index} 
+                    className="flex items-center justify-center bg-white px-6 py-3 rounded-lg shadow-md" 
+                  >
+                    <span 
+                      className="text-xl font-bold tracking-tight" 
+                      style={{ color: logo.color }}
+                    >
+                      {logo.name}
+                    </span>
                   </div>
                 ))}
               </div>
