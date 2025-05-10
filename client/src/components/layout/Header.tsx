@@ -49,7 +49,8 @@ const navItems = [
   },
   {
     label: 'Pricing',
-    href: '#pricing'
+    href: null, // Making it non-clickable
+    disabled: true
   },
 ];
 
@@ -103,6 +104,15 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
     );
   }
 
+  // Handle disabled state for items like Pricing
+  if (item.disabled) {
+    return (
+      <span className="inline-flex items-center px-4 py-2 text-gray-500 cursor-not-allowed">
+        {item.label}
+      </span>
+    );
+  }
+
   return (
     <Link 
       href={item.href || '#'} 
@@ -144,8 +154,8 @@ const Header = () => {
           </div>
           
           <div className="flex items-center space-x-3">
-            <Button variant="default" className="rounded-md text-sm font-medium bg-primary hover:bg-primary/90" asChild>
-              <Link href="#free">Start for Free</Link>
+            <Button variant="default" className="rounded-md text-sm font-medium bg-slate-800 hover:bg-slate-700 text-white" asChild>
+              <Link href="#demo">Get a Demo</Link>
             </Button>
             
             {/* Mobile menu button */}
@@ -213,6 +223,12 @@ const Header = () => {
                               </div>
                             </AccordionContent>
                           </AccordionItem>
+                        ) : item.disabled ? (
+                          <div key={idx} className="border-b border-accent/10">
+                            <div className="flex px-4 py-3 text-gray-500 cursor-not-allowed w-full">
+                              {item.label}
+                            </div>
+                          </div>
                         ) : (
                           <div key={idx} className="border-b border-accent/10">
                             <SheetClose asChild>
@@ -237,8 +253,8 @@ const Header = () => {
                   
                   <div className="border-t border-accent/20 p-4 space-y-3">
                     <SheetClose asChild>
-                      <Button className="w-full text-sm rounded-md" asChild>
-                        <Link href="#free">Start for Free</Link>
+                      <Button className="w-full text-sm rounded-md bg-slate-800 hover:bg-slate-700 text-white" asChild>
+                        <Link href="#demo">Get a Demo</Link>
                       </Button>
                     </SheetClose>
                   </div>
