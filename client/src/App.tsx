@@ -22,6 +22,7 @@ function App() {
           <Route path="/platform" component={Platform} />
           <Route path="/platform/mulesoft-conversion" component={MulesoftConversion} />
           <Route path="/solutions/enterprise" component={Enterprise} />
+          <Route path="/solutions/financial-services" component={FinancialServices} />
           <Route path="/resources" component={Resources} />
           <Route path="/company" component={Company} />
           <Route path="/contact" component={ContactUs} />
