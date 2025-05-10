@@ -1,6 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaCalendarAlt, FaDownload, FaFileAlt, FaGraduationCap, FaPlayCircle, FaYoutube } from 'react-icons/fa';
+import { 
+  FaArrowRight, 
+  FaCalendarAlt, 
+  FaDatabase, 
+  FaDownload, 
+  FaExchangeAlt, 
+  FaFileAlt, 
+  FaGraduationCap, 
+  FaLock, 
+  FaPlayCircle, 
+  FaShieldAlt, 
+  FaYoutube 
+} from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';

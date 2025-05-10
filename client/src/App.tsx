@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Platform from "@/pages/Platform";
 import MulesoftConversion from "@/pages/Platform/MulesoftConversion";
 import Enterprise from "@/pages/Solutions/Enterprise";
+import FinancialServices from "@/pages/Solutions/FinancialServices";
 import Resources from "@/pages/Resources";
 import Company from "@/pages/Company";
 import ContactUs from "@/pages/ContactUs";

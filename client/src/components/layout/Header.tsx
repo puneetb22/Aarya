@@ -11,20 +11,17 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 const navItems = [
   {
-    label: 'Platform',
+    label: 'Product',
     href: '/platform',
     items: [
-      { label: 'Mulesoft Conversion', href: '/platform/mulesoft-conversion' },
-      { label: 'Code Migration', href: '#code-migration' },
-      { label: 'Integration', href: '#integration' },
+      { label: 'Mulesoft to Springboot', href: '/platform/mulesoft-conversion' },
     ],
   },
   {
     label: 'Solutions',
     items: [
       { label: 'Enterprise', href: '/solutions/enterprise' },
-      { label: 'Startups', href: '#startups' },
-      { label: 'Financial Services', href: '#financial-services' },
+      { label: 'Financial Services', href: '/solutions/financial-services' },
     ],
   },
   {
@@ -35,9 +32,9 @@ const navItems = [
     label: 'Resources',
     href: '/resources',
     items: [
-      { label: 'Blog', href: '#blog' },
-      { label: 'Documentation', href: '#documentation' },
-      { label: 'Case Studies', href: '#case-studies' },
+      { label: 'Blog', href: '/resources#blog' },
+      { label: 'Documentation', href: '/resources#documentation' },
+      { label: 'Case Studies', href: '/resources#case-studies' },
     ],
   },
   {
@@ -147,15 +144,6 @@ const Header = () => {
           </div>
           
           <div className="flex items-center space-x-3">
-            <Button variant="ghost" size="icon" className="text-gray-300 hidden lg:flex hover:text-white hover:bg-accent/40">
-              <FiSearch className="h-4 w-4" />
-            </Button>
-            <Link href="#login" className="text-gray-300 hidden lg:inline-block hover:text-white text-sm px-3 py-2">
-              Login
-            </Link>
-            <Button variant="outline" className="hidden lg:inline-flex rounded-md text-sm font-medium border-accent/50 hover:border-accent/80 text-white" asChild>
-              <Link href="#demo">Get a Demo</Link>
-            </Button>
             <Button variant="default" className="rounded-md text-sm font-medium bg-primary hover:bg-primary/90" asChild>
               <Link href="#free">Start for Free</Link>
             </Button>
@@ -249,24 +237,10 @@ const Header = () => {
                   
                   <div className="border-t border-accent/20 p-4 space-y-3">
                     <SheetClose asChild>
-                      <Link href="#login" className="block text-center py-2 text-gray-300 hover:text-white">
-                        Login
-                      </Link>
+                      <Button className="w-full text-sm rounded-md" asChild>
+                        <Link href="#free">Start for Free</Link>
+                      </Button>
                     </SheetClose>
-                    
-                    <div className="grid grid-cols-2 gap-3">
-                      <SheetClose asChild>
-                        <Button variant="outline" className="w-full text-sm rounded-md border-accent/50" asChild>
-                          <Link href="#demo">Get a Demo</Link>
-                        </Button>
-                      </SheetClose>
-                      
-                      <SheetClose asChild>
-                        <Button className="w-full text-sm rounded-md" asChild>
-                          <Link href="#free">Start for Free</Link>
-                        </Button>
-                      </SheetClose>
-                    </div>
                   </div>
                 </div>
               </SheetContent>
