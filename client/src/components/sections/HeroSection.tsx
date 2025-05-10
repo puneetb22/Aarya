@@ -4,27 +4,19 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaCode, FaRocket, FaTools } from 'react-icons/fa';
 
-// Higher quality, consistent logos
+// Higher quality, consistent logos with better visibility
 const clientLogos = [
   {
-    url: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Apigee_logo.svg",
+    url: "https://www.vectorlogo.zone/logos/apigee/apigee-ar21.png",
     alt: "Apigee"
   },
   {
-    url: "https://logos-world.net/wp-content/uploads/2021/02/Datadog-Emblem.png",
+    url: "https://www.vectorlogo.zone/logos/datadoghq/datadoghq-ar21.png",
     alt: "Datadog"
   },
   {
-    url: "https://konghq.com/wp-content/uploads/2018/08/kong-combination-mark-color-256px.png",
+    url: "https://www.vectorlogo.zone/logos/konghq/konghq-ar21.png",
     alt: "Kong Inc"
-  },
-  {
-    url: "https://cdn-icons-png.flaticon.com/512/5968/5968313.png", 
-    alt: "Microsoft"
-  },
-  {
-    url: "https://cdn-icons-png.flaticon.com/512/882/882730.png",
-    alt: "Salesforce"
   }
 ];
 
@@ -89,13 +81,13 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <p className="text-gray-400 mb-6 text-sm">Trusted by leading enterprises worldwide</p>
-              <div className="flex flex-wrap gap-x-10 gap-y-6 items-center justify-between">
+              <div className="flex flex-wrap gap-8 items-center justify-center">
                 {clientLogos.map((logo, index) => (
-                  <div key={index} className="flex items-center justify-center">
+                  <div key={index} className="flex items-center justify-center bg-white/5 p-3 rounded-lg">
                     <img 
                       src={logo.url} 
                       alt={logo.alt} 
-                      className="h-6 md:h-8 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300" 
+                      className="h-10 md:h-12 w-auto object-contain opacity-100" 
                     />
                   </div>
                 ))}
