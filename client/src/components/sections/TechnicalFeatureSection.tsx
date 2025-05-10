@@ -81,10 +81,10 @@ const TechnicalFeatureSection = () => {
                     <div className="text-blue-400">@RequestMapping(<span className="text-green-400">"/api"</span>)</div>
                     <div className="text-purple-400">public class <span className="text-yellow-400">DataController</span> {'{'}</div>
                     <div className="ml-4 text-slate-400">@Autowired</div>
-                    <div className="ml-4 text-purple-400">private <span className="text-yellow-400">UserRepository</span> userRepo;</div>
+                    <div className="ml-4 text-purple-400">private <span className="text-yellow-400">UserService</span> userServ;</div>
                     <div className="text-blue-400 ml-4">@GetMapping(<span className="text-green-400">"/data"</span>)</div>
                     <div className="text-purple-400 ml-4">public <span className="text-yellow-400">List&lt;User&gt;</span> getData() {'{'}</div>
-                    <div className="text-yellow-400 ml-8">return <span className="text-white">userRepo.findAll();</span></div>
+                    <div className="text-yellow-400 ml-8">return <span className="text-white">userServ.findAll();</span></div>
                     <div className="text-purple-400 ml-4">{'}'}</div>
                     <div className="text-purple-400">{'}'}</div>
                   </div>
