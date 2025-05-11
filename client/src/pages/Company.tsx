@@ -178,7 +178,7 @@ const Company = () => {
       </section>
 
       {/* Leadership Team */}
-      <section className="py-20 bg-white">
+      <section id="team" className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">OUR LEADERSHIP</h2>
@@ -208,17 +208,11 @@ const Company = () => {
               linkedIn="#linkedin-sarah"
             />
           </div>
-          
-          <div className="text-center mt-12">
-            <Button className="h-12 px-6 text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 shadow-sm" asChild>
-              <Link href="#full-team">View Full Team</Link>
-            </Button>
-          </div>
         </div>
       </section>
 
-      {/* Offices */}
-      <section className="py-20 bg-slate-50">
+      {/* Offices - Hidden for now, can be enabled later */}
+      <section className="hidden py-20 bg-slate-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">OUR LOCATIONS</h2>

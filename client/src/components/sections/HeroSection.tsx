@@ -4,24 +4,12 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaCode, FaRocket, FaTools } from 'react-icons/fa';
 
-// Original simple text-based logos for better visibility
 const clientLogos = [
-  {
-    name: "Apigee",
-    color: "#0D69AF"
-  },
-  {
-    name: "Datadog",
-    color: "#632CA6"
-  },
-  {
-    name: "Kong",
-    color: "#00997B"
-  },
-  {
-    name: "Docker",
-    color: "#2496ED"
-  }
+  "https://cdn-icons-png.flaticon.com/512/5969/5969059.png", // IBM
+  "https://cdn-icons-png.flaticon.com/512/5968/5968939.png", // Oracle
+  "https://cdn-icons-png.flaticon.com/512/5968/5968705.png", // SAP
+  "https://cdn-icons-png.flaticon.com/512/5968/5968313.png", // Microsoft
+  "https://cdn-icons-png.flaticon.com/512/882/882730.png"    // Salesforce
 ];
 
 const HeroSection = () => {
@@ -85,18 +73,11 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <p className="text-gray-400 mb-6 text-sm">Trusted by leading enterprises worldwide</p>
-              <div className="flex flex-wrap gap-8 items-center justify-center">
+              <div className="flex flex-wrap gap-x-10 gap-y-6 items-center">
                 {clientLogos.map((logo, index) => (
-                  <div 
-                    key={index} 
-                    className="flex items-center justify-center bg-white px-6 py-3 rounded-lg shadow-md" 
-                  >
-                    <span 
-                      className="text-xl font-bold tracking-tight" 
-                      style={{ color: logo.color }}
-                    >
-                      {logo.name}
-                    </span>
+                  <div key={index} className="flex">
+                    <img src={logo} alt={`Tech client logo ${index + 1}`} 
+                         className="h-5 md:h-6 opacity-70 grayscale hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 ))}
               </div>

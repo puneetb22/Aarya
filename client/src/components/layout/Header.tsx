@@ -172,11 +172,11 @@ const Header = () => {
                       <Logo variant="icon" className="h-10 w-10" />
                       <span className="ml-2 text-xl font-semibold text-white">Aaryati</span>
                     </div>
-                    <SheetTrigger asChild>
+                    <SheetClose asChild>
                       <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
                         <FiX className="h-5 w-5" />
                       </Button>
-                    </SheetTrigger>
+                    </SheetClose>
                   </div>
                 
                   <div className="flex-1 overflow-y-auto py-2">
