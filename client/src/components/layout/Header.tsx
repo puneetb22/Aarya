@@ -41,8 +41,8 @@ const navItems = [
     label: 'Company',
     href: '/company',
     items: [
-      { label: 'About Us', href: '#about-us' },
-      { label: 'Team', href: '#team' },
+      { label: 'About Us', href: '/company' },
+      { label: 'Team', href: '/company#team' },
       { label: 'Careers', href: '#careers' },
       { label: 'Contact', href: '/contact' },
     ],

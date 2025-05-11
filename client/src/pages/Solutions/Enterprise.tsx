@@ -187,8 +187,8 @@ const Enterprise = () => {
                   </Button>
                 </div>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-8 border border-slate-700">
-                <h3 className="text-xl font-semibold mb-6 text-white">Enterprise Package Includes:</h3>
+              <div className="bg-white/95 rounded-xl p-8 border border-blue-100 shadow-md">
+                <h3 className="text-xl font-semibold mb-6 text-gray-900">Enterprise Package Includes:</h3>
                 <ul className="space-y-4">
                   {[
                     "Custom migration strategy and roadmap",
@@ -198,8 +198,8 @@ const Enterprise = () => {
                     "Comprehensive staff training and knowledge transfer",
                     "24/7 priority support"
                   ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-3 text-gray-300">
-                      <div className="mt-1 text-blue-400"><FaArrowRight className="w-4 h-4" /></div>
+                    <li key={index} className="flex items-start gap-3 text-gray-700">
+                      <div className="mt-1 text-blue-600"><FaArrowRight className="w-4 h-4" /></div>
                       <span>{item}</span>
                     </li>
                   ))}

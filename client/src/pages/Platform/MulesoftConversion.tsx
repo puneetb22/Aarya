@@ -112,29 +112,29 @@ const MulesoftConversion = () => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-indigo-500/5 to-violet-500/5 z-0"></div>
                 
                 <div className="relative z-10 grid grid-cols-2 gap-4">
-                  <div className="bg-slate-900/90 p-6 rounded-xl border border-blue-900/30 flex items-center justify-center">
+                  <div className="bg-white p-6 rounded-xl border border-blue-100 shadow-md flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-20 h-20 mx-auto mb-4 bg-slate-800 rounded-full flex items-center justify-center">
-                        <span className="text-5xl">M</span>
+                      <div className="w-20 h-20 mx-auto mb-4 bg-blue-50 rounded-full flex items-center justify-center">
+                        <span className="text-5xl text-blue-600">M</span>
                       </div>
                       <div className="flex items-center justify-center">
-                        <span className="text-xs text-gray-400">Mulesoft</span>
+                        <span className="text-xs text-gray-600">Mulesoft</span>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="bg-slate-900/90 p-6 rounded-xl border border-blue-900/30 flex items-center justify-center">
+                  <div className="bg-white p-6 rounded-xl border border-blue-100 shadow-md flex items-center justify-center">
                     <div className="grid grid-cols-2 gap-2 w-full">
-                      <div className="flex justify-center items-center text-blue-400">
+                      <div className="flex justify-center items-center text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14.5l2 2c1 1 4-1 4-1"/><path d="M8.5 8.5l7 7"/><path d="M16 9.5l.5-1.5 1.5.5"/><path d="M9.5 16l-1.5.5.5 1.5"/></svg>
                       </div>
-                      <div className="flex justify-center items-center text-blue-400">
+                      <div className="flex justify-center items-center text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M14.5 9.5 19 4"/><path d="M5 19 9.5 14.5"/><path d="M7 9.7 5.89 7.25l2.46-1.13"/><path d="M17 14.95l1.11 2.45-2.46 1.13"/></svg>
                       </div>
-                      <div className="flex justify-center items-center text-blue-400">
+                      <div className="flex justify-center items-center text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M13 2v8.4a1 1 0 0 1-1 1v0a1 1 0 0 1-1-1V2"/><path d="M9 19.2v-7.3a1 1 0 0 1 1-1v0a1 1 0 0 1 1 1v7.3"/><path d="M15 14.7V19"/><path d="M14.8 9H16a2 2 0 0 1 2 2v0c0 1.1-.9 2-2 2h-.8"/></svg>
                       </div>
-                      <div className="flex justify-center items-center text-blue-400">
+                      <div className="flex justify-center items-center text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12h20"/><path d="M2 7h20"/><path d="M2 17h20"/></svg>
                       </div>
                     </div>
@@ -150,7 +150,7 @@ const MulesoftConversion = () => {
                 </div>
                 
                 <div className="relative mb-4">
-                  <div className="p-6 rounded-xl bg-slate-900/90 border border-blue-900/30">
+                  <div className="p-6 rounded-xl bg-white border border-blue-100 shadow-md">
                     <img 
                       src={conversionLogo} 
                       alt="Mulesoft to Spring Boot conversion" 
@@ -158,9 +158,9 @@ const MulesoftConversion = () => {
                     />
                   </div>
                   
-                  <div className="absolute -bottom-3 right-6 bg-slate-900 border border-blue-500/20 rounded-lg px-3 py-1.5 text-xs font-medium text-blue-500">
+                  <div className="absolute -bottom-3 right-6 bg-blue-600 border border-blue-700 rounded-lg px-3 py-1.5 text-xs font-medium text-white">
                     <div className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                      <span className="w-2 h-2 rounded-full bg-white"></span>
                       Spring Boot Conversion Ready
                     </div>
                   </div>
