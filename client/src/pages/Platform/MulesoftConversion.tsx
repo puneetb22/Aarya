@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { FaArrowRight, FaCheck, FaCode, FaDatabase, FaExchangeAlt, FaFileCode, FaRocket, FaShieldAlt } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
-import conversionLogo from '@assets/springboot1.png';
 
 const FeatureCard = ({ 
   icon: Icon, 
@@ -151,11 +150,9 @@ const MulesoftConversion = () => {
                 
                 <div className="relative mb-4">
                   <div className="p-6 rounded-xl bg-white border border-blue-100 shadow-md">
-                    <img 
-                      src={conversionLogo} 
-                      alt="Mulesoft to Spring Boot conversion" 
-                      className="h-16 mx-auto object-contain"
-                    />
+                    <div className="h-16 mx-auto flex justify-center items-center">
+                      <span className="text-2xl font-bold text-blue-600">Spring Boot</span>
+                    </div>
                   </div>
                   
                   <div className="absolute -bottom-3 right-6 bg-blue-600 border border-blue-700 rounded-lg px-3 py-1.5 text-xs font-medium text-white">
@@ -306,7 +303,6 @@ const MulesoftConversion = () => {
                   <th className="p-4 text-left bg-gray-50 text-gray-600 font-semibold border-b border-gray-200"></th>
                   <th className="p-4 text-center bg-blue-50 text-blue-700 font-semibold border-b border-gray-200">
                     <div className="flex items-center justify-center">
-                      <img src={conversionLogo} alt="Spring Boot" className="h-8 mr-2" />
                       <span>Spring Boot</span>
                     </div>
                   </th>
