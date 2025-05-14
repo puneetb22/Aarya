@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 const navItems = [
   {
     label: 'Product',
-    href: '/platform',
+    href: '#',
     items: [
       { label: 'Mulesoft to Springboot', href: '/platform/mulesoft-conversion' },
     ],
@@ -43,7 +43,7 @@ const navItems = [
     items: [
       { label: 'About Us', href: '/company' },
       { label: 'Team', href: '/company#team' },
-      { label: 'Careers', href: '#careers' },
+      { label: 'Careers', href: '/company#careers' },
       { label: 'Contact', href: '/contact' },
     ],
   },
@@ -94,16 +94,22 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
                       : "text-gray-300 hover:text-white"
                   )}
                   onClick={(e) => {
-                    // If it's a hash link on the company page, handle scroll
-                    if (subItem.href.includes('/company#') || (location === '/company' && subItem.href.includes('#'))) {
-                      e.preventDefault();
-                      const sectionId = subItem.href.split('#')[1];
-                      const element = document.getElementById(sectionId);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      } else if (subItem.href.includes('/company#')) {
-                        // If we need to navigate to the company page first
-                        window.location.href = subItem.href;
+                    // Handle hash links for both company and resources pages
+                    if (subItem.href.includes('#')) {
+                      const isCompanyLink = subItem.href.includes('/company#') || (location === '/company' && subItem.href.includes('#'));
+                      const isResourcesLink = subItem.href.includes('/resources#') || (location === '/resources' && subItem.href.includes('#'));
+                      
+                      if (isCompanyLink || isResourcesLink) {
+                        e.preventDefault();
+                        const sectionId = subItem.href.split('#')[1];
+                        const element = document.getElementById(sectionId);
+                        
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        } else if (subItem.href.includes('/')) {
+                          // If we need to navigate to another page first
+                          window.location.href = subItem.href;
+                        }
                       }
                     }
                   }}
@@ -229,16 +235,22 @@ const Header = () => {
                                             : "text-gray-400"
                                         )}
                                         onClick={(e) => {
-                                          // If it's a hash link on the company page, handle scroll
-                                          if (subItem.href.includes('/company#') || (location === '/company' && subItem.href.includes('#'))) {
-                                            e.preventDefault();
-                                            const sectionId = subItem.href.split('#')[1];
-                                            const element = document.getElementById(sectionId);
-                                            if (element) {
-                                              element.scrollIntoView({ behavior: 'smooth' });
-                                            } else if (subItem.href.includes('/company#')) {
-                                              // If we need to navigate to the company page first
-                                              window.location.href = subItem.href;
+                                          // Handle hash links for both company and resources pages
+                                          if (subItem.href.includes('#')) {
+                                            const isCompanyLink = subItem.href.includes('/company#') || (location === '/company' && subItem.href.includes('#'));
+                                            const isResourcesLink = subItem.href.includes('/resources#') || (location === '/resources' && subItem.href.includes('#'));
+                                            
+                                            if (isCompanyLink || isResourcesLink) {
+                                              e.preventDefault();
+                                              const sectionId = subItem.href.split('#')[1];
+                                              const element = document.getElementById(sectionId);
+                                              
+                                              if (element) {
+                                                element.scrollIntoView({ behavior: 'smooth' });
+                                              } else if (subItem.href.includes('/')) {
+                                                // If we need to navigate to another page first
+                                                window.location.href = subItem.href;
+                                              }
                                             }
                                           }
                                         }}

@@ -173,7 +173,7 @@ const Resources = () => {
       </section>
 
       {/* Featured Resource */}
-      <section className="py-20 bg-white">
+      <section id="case-studies" className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -240,7 +240,7 @@ const Resources = () => {
       </section>
 
       {/* Resource Library */}
-      <section className="py-20 bg-gray-50">
+      <section id="documentation" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">RESOURCE LIBRARY</h2>
@@ -300,7 +300,7 @@ const Resources = () => {
       </section>
 
       {/* Upcoming Webinars */}
-      <section className="py-20 bg-white">
+      <section id="blog" className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">LEARN WITH EXPERTS</h2>
