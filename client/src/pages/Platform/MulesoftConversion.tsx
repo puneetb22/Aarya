@@ -378,7 +378,7 @@ const MulesoftConversion = () => {
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-gray-700 bg-transparent text-white hover:bg-slate-800" asChild>
+              <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-blue-500/40 bg-blue-500/10 text-blue-100 hover:bg-blue-500/20 hover:text-white transition-colors group" asChild>
                 <Link href="#migration-assessment">Get Free Migration Assessment</Link>
               </Button>
             </div>

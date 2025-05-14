@@ -169,7 +169,7 @@ const Resources = () => {
               <Button className="h-12 px-6 text-sm font-medium rounded-md bg-blue-500 hover:bg-blue-600" asChild>
                 <Link href="#blog">View Blog</Link>
               </Button>
-              <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-slate-700 bg-slate-900/60 hover:bg-slate-800/80 text-white" asChild>
+              <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-blue-500/40 bg-blue-500/10 text-blue-100 hover:bg-blue-500/20 hover:text-white transition-colors group" asChild>
                 <Link href="#documentation">View Documentation</Link>
               </Button>
             </div>

@@ -174,8 +174,10 @@ const Header = () => {
           </div>
           
           <div className="flex items-center space-x-3">
-            <Button variant="default" className="rounded-md text-sm font-medium bg-slate-800 hover:bg-slate-700 text-white" asChild>
-              <Link href="/request-demo">Get a Demo</Link>
+            <Button variant="default" className="rounded-md text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white transition-colors" asChild>
+              <Link href="/request-demo" className="flex items-center">
+                <span>Get a Demo</span>
+              </Link>
             </Button>
             
             {/* Mobile menu button */}
