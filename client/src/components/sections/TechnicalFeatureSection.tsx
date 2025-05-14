@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCheck, FaCode, FaJava } from 'react-icons/fa';
+import { FaCheck, FaCode, FaJava, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Button } from '@/components/ui/button';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const features = [
   {
@@ -21,7 +30,133 @@ const features = [
   }
 ];
 
+// Code Conversion Examples for Carousel
+const codeExamples = [
+  {
+    id: 1,
+    muleFile: "muleflow.xml",
+    springFile: "RestController.java",
+    muleCode: `// Mulesoft XML Flow
+<flow
+  name="api-main">
+  <http:listener
+    path="/api/data"
+    config-ref="HTTP_Config"/>
+  <db:select
+    config-ref="Database_Config">
+    "SELECT * FROM users"
+  </db:select>
+  <transform>
+    %dw 2.0
+  </transform>
+</flow>`,
+    springCode: `// Spring Boot Controller
+@RestController
+@RequestMapping("/api")
+public class DataController {
+  @Autowired
+  private UserRepository userRepo;
+  @GetMapping("/data")
+  public List<User> getData() {
+    return userRepo.findAll();
+  }
+}`
+  },
+  {
+    id: 2,
+    muleFile: "errorHandler.xml",
+    springFile: "ExceptionHandler.java",
+    muleCode: `// Mulesoft Error Handler
+<error-handler name="apiErrorHandler">
+  <on-error-propagate type="DB:CONNECTIVITY">
+    <ee:transform>
+      <ee:message>
+        <ee:set-payload>
+          {"error": "Database connection failed"}
+        </ee:set-payload>
+      </ee:message>
+      <ee:variables>
+        <ee:set-variable>500</ee:set-variable>
+      </ee:variables>
+    </ee:transform>
+  </on-error-propagate>
+</error-handler>`,
+    springCode: `// Spring Boot Exception Handler
+@ControllerAdvice
+public class GlobalExceptionHandler {
+  @ExceptionHandler(DataAccessException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<ErrorResponse> handleDbError(
+      DataAccessException ex) {
+    ErrorResponse error = new ErrorResponse(
+      "Database connection failed");
+    return new ResponseEntity<>(error, 
+      HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+}`
+  },
+  {
+    id: 3,
+    muleFile: "transformFlow.xml",
+    springFile: "DataMapper.java",
+    muleCode: `// Mulesoft Dataweave Transform
+<flow name="transform-data">
+  <http:listener path="/transform"/>
+  <ee:transform>
+    <ee:message>
+      <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( item ) -> {
+  id: item.id,
+  fullName: item.firstName ++ " " ++ item.lastName,
+  active: item.status == "ACTIVE"
+}]]></ee:set-payload>
+    </ee:message>
+  </ee:transform>
+</flow>`,
+    springCode: `// Spring Boot Mapper
+@Component
+public class UserMapper {
+  public List<UserDTO> transformUsers(List<User> users) {
+    return users.stream()
+      .map(user -> UserDTO.builder()
+        .id(user.getId())
+        .fullName(user.getFirstName() + " " + 
+                  user.getLastName())
+        .active("ACTIVE".equals(user.getStatus()))
+        .build())
+      .collect(Collectors.toList());
+  }
+}`
+  }
+];
+
 const TechnicalFeatureSection = () => {
+  const [activeExample, setActiveExample] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+
+  React.useEffect(() => {
+    if (!api) return;
+    
+    const handleSelect = () => {
+      if (api.selectedScrollSnap !== undefined) {
+        setActiveExample(api.selectedScrollSnap());
+      }
+    };
+    
+    api.on("select", handleSelect);
+    
+    // Initial setting
+    if (api.selectedScrollSnap !== undefined) {
+      setActiveExample(api.selectedScrollSnap());
+    }
+    
+    return () => {
+      api.off("select", handleSelect);
+    };
+  }, [api]);
+
   return (
     <section className="py-24 lg:py-32 relative overflow-hidden">
       {/* Background effects */}
@@ -38,77 +173,110 @@ const TechnicalFeatureSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative rounded-xl overflow-hidden border border-accent/20 shadow-xl shadow-primary/5">
-              {/* Code editor interface */}
-              <div className="bg-slate-900 w-full">
-                {/* Editor header */}
-                <div className="h-10 bg-slate-800 border-b border-slate-700 flex items-center px-4 text-xs text-gray-400">
-                  <div className="flex space-x-1.5 mr-4">
-                    <div className="w-3 h-3 rounded-full bg-red-500/70"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500/70"></div>
-                  </div>
-                  <div className="flex space-x-2">
-                    <span className="bg-blue-600/20 px-2 py-1 rounded text-blue-400">muleflow.xml</span>
-                    <span className="bg-green-600/20 px-2 py-1 rounded text-green-400">RestController.java</span>
-                  </div>
+            <Carousel
+              className="w-full"
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+              setApi={setApi}
+            >
+              <CarouselContent>
+                {codeExamples.map((example, index) => (
+                  <CarouselItem key={example.id}>
+                    <div className="relative rounded-xl overflow-hidden border border-accent/20 shadow-xl shadow-primary/5">
+                      {/* Code editor interface */}
+                      <div className="bg-slate-900 w-full">
+                        {/* Editor header */}
+                        <div className="h-10 bg-slate-800 border-b border-slate-700 flex items-center px-4 text-xs text-gray-400">
+                          <div className="flex space-x-1.5 mr-4">
+                            <div className="w-3 h-3 rounded-full bg-red-500/70"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500/70"></div>
+                          </div>
+                          <div className="flex space-x-2">
+                            <span className="bg-blue-600/20 px-2 py-1 rounded text-blue-400">{example.muleFile}</span>
+                            <span className="bg-green-600/20 px-2 py-1 rounded text-green-400">{example.springFile}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Code content */}
+                        <div className="grid grid-cols-2 h-full">
+                          {/* Left side - Mulesoft code */}
+                          <div className="p-5 bg-slate-900 border-r border-slate-700 text-sm font-mono overflow-auto" style={{ maxHeight: "350px" }}>
+                            <pre className="whitespace-pre-wrap text-xs sm:text-sm">
+                              {example.muleCode.split('\n').map((line, i) => {
+                                if (line.includes("//")) {
+                                  return <div key={i} className="text-slate-500">{line}</div>;
+                                } else if (line.includes("<")) {
+                                  // Handle XML tags with attributes
+                                  return (
+                                    <div key={i} className="text-blue-400">{line.replace(/"([^"]*)"/g, '<span class="text-green-400">"$1"</span>')}</div>
+                                  );
+                                } else if (line.includes("%dw")) {
+                                  return <div key={i} className="text-purple-400">{line}</div>;
+                                } else {
+                                  return <div key={i}>{line}</div>;
+                                }
+                              })}
+                            </pre>
+                          </div>
+                          
+                          {/* Right side - Spring Boot code */}
+                          <div className="p-5 bg-slate-950 text-sm font-mono overflow-auto" style={{ maxHeight: "350px" }}>
+                            <pre className="whitespace-pre-wrap text-xs sm:text-sm">
+                              {example.springCode.split('\n').map((line, i) => {
+                                if (line.includes("//")) {
+                                  return <div key={i} className="text-slate-500">{line}</div>;
+                                } else if (line.includes("@")) {
+                                  return <div key={i} className="text-blue-400">{line.replace(/"([^"]*)"/g, '<span class="text-green-400">"$1"</span>')}</div>;
+                                } else if (line.includes("public") || line.includes("private") || line.includes("class")) {
+                                  return <div key={i} className="text-purple-400">{line.replace(/([A-Z][a-zA-Z0-9]*(?:<[^>]*>)?)/g, '<span class="text-yellow-400">$1</span>')}</div>;
+                                } else if (line.includes("return")) {
+                                  return <div key={i} className="text-yellow-400">{line.replace(/(\w+\.\w+\(\));/, '<span class="text-white">$1</span>')}</div>;
+                                } else {
+                                  return <div key={i}>{line}</div>;
+                                }
+                              })}
+                            </pre>
+                          </div>
+                        </div>
+                        
+                        {/* Conversion indicators */}
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                          <div className="bg-blue-600/30 backdrop-blur-sm border border-blue-500/30 rounded-full p-3">
+                            <FaCode className="text-blue-400 h-5 w-5" />
+                          </div>
+                        </div>
+                        
+                        <div className="h-10 bg-slate-800 border-t border-slate-700 flex items-center justify-between px-4 text-xs text-gray-400">
+                          <div className="flex items-center">
+                            <FaJava className="text-orange-400 mr-2" />
+                            <span>Spring Boot 3.0</span>
+                          </div>
+                          <div className="flex items-center">
+                            <span className="text-green-400">Conversion Complete</span>
+                            <span className="ml-2 w-2 h-2 bg-green-500 rounded-full"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center gap-2 mt-4">
+                <CarouselPrevious className="static transform-none data-[disabled]:opacity-50 bg-slate-800 hover:bg-slate-700 border-slate-700" />
+                <div className="flex items-center gap-1">
+                  {codeExamples.map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`w-2 h-2 rounded-full ${i === activeExample ? 'bg-blue-500' : 'bg-slate-600'}`}
+                    />
+                  ))}
                 </div>
-                
-                {/* Code content */}
-                <div className="grid grid-cols-2 h-full">
-                  {/* Left side - Mulesoft code */}
-                  <div className="p-5 bg-slate-900 border-r border-slate-700 text-sm font-mono">
-                    <div className="mb-2 text-slate-500">// Mulesoft XML Flow</div>
-                    <div className="text-blue-400">&lt;flow</div>
-                    <div className="text-blue-400 ml-4">name=<span className="text-green-400">"api-main"</span>&gt;</div>
-                    <div className="text-blue-400 ml-4">&lt;http:listener</div>
-                    <div className="text-blue-400 ml-8">path=<span className="text-green-400">"/api/data"</span></div>
-                    <div className="text-blue-400 ml-8">config-ref=<span className="text-green-400">"HTTP_Config"</span>/&gt;</div>
-                    <div className="text-blue-400 ml-4">&lt;db:select</div>
-                    <div className="text-blue-400 ml-8">config-ref=<span className="text-green-400">"Database_Config"</span>&gt;</div>
-                    <div className="text-green-400 ml-12">"SELECT * FROM users"</div>
-                    <div className="text-blue-400 ml-8">&lt;/db:select&gt;</div>
-                    <div className="text-blue-400 ml-4">&lt;transform&gt;</div>
-                    <div className="text-purple-400 ml-8">%dw 2.0</div>
-                    <div className="text-blue-400 ml-4">&lt;/transform&gt;</div>
-                    <div className="text-blue-400">&lt;/flow&gt;</div>
-                  </div>
-                  
-                  {/* Right side - Spring Boot code */}
-                  <div className="p-5 bg-slate-950 text-sm font-mono">
-                    <div className="mb-2 text-slate-500">// Spring Boot Controller</div>
-                    <div className="text-blue-400">@RestController</div>
-                    <div className="text-blue-400">@RequestMapping(<span className="text-green-400">"/api"</span>)</div>
-                    <div className="text-purple-400">public class <span className="text-yellow-400">DataController</span> {'{'}</div>
-                    <div className="ml-4 text-slate-400">@Autowired</div>
-                    <div className="ml-4 text-purple-400">private <span className="text-yellow-400">UserRepository</span> userRepo;</div>
-                    <div className="text-blue-400 ml-4">@GetMapping(<span className="text-green-400">"/data"</span>)</div>
-                    <div className="text-purple-400 ml-4">public <span className="text-yellow-400">List&lt;User&gt;</span> getData() {'{'}</div>
-                    <div className="text-yellow-400 ml-8">return <span className="text-white">userRepo.findAll();</span></div>
-                    <div className="text-purple-400 ml-4">{'}'}</div>
-                    <div className="text-purple-400">{'}'}</div>
-                  </div>
-                </div>
-                
-                {/* Conversion indicators */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                  <div className="bg-blue-600/30 backdrop-blur-sm border border-blue-500/30 rounded-full p-3">
-                    <FaCode className="text-blue-400 h-5 w-5" />
-                  </div>
-                </div>
-                
-                <div className="h-10 bg-slate-800 border-t border-slate-700 flex items-center justify-between px-4 text-xs text-gray-400">
-                  <div className="flex items-center">
-                    <FaJava className="text-orange-400 mr-2" />
-                    <span>Spring Boot 3.0</span>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-green-400">Conversion Complete</span>
-                    <span className="ml-2 w-2 h-2 bg-green-500 rounded-full"></span>
-                  </div>
-                </div>
+                <CarouselNext className="static transform-none data-[disabled]:opacity-50 bg-slate-800 hover:bg-slate-700 border-slate-700" />
               </div>
-            </div>
+            </Carousel>
           </motion.div>
           
           <motion.div 
