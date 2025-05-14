@@ -107,8 +107,8 @@ const ContactUs = () => {
                     <div>
                       <h3 className="font-medium text-white">Office Location</h3>
                       <p className="text-gray-400 mt-1">
-                        123 Tech Park, Silicon Valley<br />
-                        California, USA
+                        Kharadi, Pune<br />
+                        Maharashtra, India
                       </p>
                     </div>
                   </div>
@@ -120,8 +120,8 @@ const ContactUs = () => {
                     <div>
                       <h3 className="font-medium text-white">Email Us</h3>
                       <p className="text-gray-400 mt-1">
-                        <a href="mailto:info@aaryati.com" className="hover:text-primary transition-colors">
-                          info@aaryati.com
+                        <a href="mailto:contact@aaryati.com" className="hover:text-primary transition-colors">
+                          contact@aaryati.com
                         </a>
                       </p>
                     </div>
