@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { FaArrowRight, FaCode, FaRocket, FaTools } from 'react-icons/fa';
 
 const clientLogos = [
-  "https://cdn-icons-png.flaticon.com/512/5969/5969059.png", // IBM
-  "https://cdn-icons-png.flaticon.com/512/5968/5968939.png", // Oracle
-  "https://cdn-icons-png.flaticon.com/512/5968/5968705.png", // SAP
-  "https://cdn-icons-png.flaticon.com/512/5968/5968313.png", // Microsoft
-  "https://cdn-icons-png.flaticon.com/512/882/882730.png"    // Salesforce
+  "https://cdn-icons-png.flaticon.com/512/5969/5969059.png",   // IBM
+  "/assets/partner-logos/datadog.png",                        // DataDog
+  "https://cdn-icons-png.flaticon.com/512/5968/5968705.png",  // SAP
+  "/assets/partner-logos/kong.png",                           // Kong
+  "/assets/partner-logos/grafana.png"                         // Grafana
 ];
 
 const HeroSection = () => {
