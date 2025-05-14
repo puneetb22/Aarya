@@ -50,7 +50,7 @@ const ResourceCard = ({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="overflow-hidden h-full flex flex-col">
+      <Card className="overflow-hidden h-full flex flex-col bg-blue-900 text-white border-accent">
         {imageSrc && (
           <div className="h-48 overflow-hidden">
             <img src={imageSrc} alt={title} className="w-full h-full object-cover transition-transform hover:scale-105" />
@@ -59,23 +59,23 @@ const ResourceCard = ({
         <CardHeader>
           <div className="flex items-center gap-2 mb-2">
             {getIcon()}
-            <span className="text-sm font-medium text-gray-500">{type}</span>
+            <span className="text-sm font-medium text-gray-300">{type}</span>
             {date && (
               <>
-                <span className="mx-1">•</span>
-                <span className="flex items-center text-sm text-gray-500">
+                <span className="mx-1 text-gray-400">•</span>
+                <span className="flex items-center text-sm text-gray-300">
                   <FaCalendarAlt className="mr-1 h-3 w-3" /> {date}
                 </span>
               </>
             )}
           </div>
-          <h3 className="text-xl font-bold">{title}</h3>
+          <h3 className="text-xl font-bold text-white">{title}</h3>
         </CardHeader>
         <CardContent className="flex-grow">
-          <p className="text-gray-600">{description}</p>
+          <p className="text-gray-300">{description}</p>
         </CardContent>
         <CardFooter className="pt-0">
-          <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-800 font-medium group" asChild>
+          <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-blue-200 font-medium group" asChild>
             <Link href={link}>
               <span>Learn more</span>
               <FaArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
