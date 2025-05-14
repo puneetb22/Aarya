@@ -37,10 +37,8 @@ const codeExamples = [
     muleFile: "muleflow.xml",
     springFile: "RestController.java",
     muleCode: `// Mulesoft XML Flow
-<flow
-  name="api-main">
-  <http:listener
-    path="/api/data"
+<flow name="api-main">
+  <http:listener path="/api/data"
     config-ref="HTTP_Config"/>
   <db:select
     config-ref="Database_Config">
@@ -56,6 +54,7 @@ const codeExamples = [
 public class DataController {
   @Autowired
   private UserRepository userRepo;
+  
   @GetMapping("/data")
   public List<User> getData() {
     return userRepo.findAll();
@@ -84,6 +83,7 @@ public class DataController {
     springCode: `// Spring Boot Exception Handler
 @ControllerAdvice
 public class GlobalExceptionHandler {
+  
   @ExceptionHandler(DataAccessException.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ResponseEntity<ErrorResponse> handleDbError(
@@ -118,6 +118,7 @@ payload map ( item ) -> {
     springCode: `// Spring Boot Mapper
 @Component
 public class UserMapper {
+  
   public List<UserDTO> transformUsers(List<User> users) {
     return users.stream()
       .map(user -> UserDTO.builder()
@@ -203,42 +204,72 @@ const TechnicalFeatureSection = () => {
                         {/* Code content */}
                         <div className="grid grid-cols-2 h-full">
                           {/* Left side - Mulesoft code */}
-                          <div className="p-5 bg-slate-900 border-r border-slate-700 text-sm font-mono overflow-auto" style={{ maxHeight: "350px" }}>
-                            <pre className="whitespace-pre-wrap text-xs sm:text-sm">
-                              {example.muleCode.split('\n').map((line, i) => {
-                                if (line.includes("//")) {
-                                  return <div key={i} className="text-slate-500">{line}</div>;
-                                } else if (line.includes("<")) {
-                                  // Handle XML tags with attributes
-                                  return (
-                                    <div key={i} className="text-blue-400">{line.replace(/"([^"]*)"/g, '<span class="text-green-400">"$1"</span>')}</div>
-                                  );
-                                } else if (line.includes("%dw")) {
-                                  return <div key={i} className="text-purple-400">{line}</div>;
-                                } else {
-                                  return <div key={i}>{line}</div>;
-                                }
-                              })}
-                            </pre>
+                          <div className="p-5 bg-slate-900 border-r border-slate-700 text-sm font-mono" style={{ position: 'relative', height: "350px" }}>
+                            <div className="h-full overflow-auto pr-2 custom-scrollbar">
+                              <pre className="whitespace-pre-wrap text-xs sm:text-sm">
+                                {example.muleCode.split('\n').map((line, i) => {
+                                  if (line.includes("//")) {
+                                    return <div key={i} className="text-slate-500">{line}</div>;
+                                  } else if (line.includes("<flow")) {
+                                    return <div key={i}><span className="text-blue-400">&lt;flow</span> <span className="text-blue-400">name=</span><span className="text-green-400">{line.includes('name=') ? line.match(/name="([^"]*)"/)?.[0] || '' : ''}</span><span className="text-blue-400">&gt;</span></div>;
+                                  } else if (line.includes("<http:listener")) {
+                                    return <div key={i} className="ml-2"><span className="text-blue-400">&lt;http:listener</span> <span className="text-blue-400">path=</span><span className="text-green-400">{line.includes('path=') ? line.match(/path="([^"]*)"/)?.[0] || '' : ''}</span><span className="text-blue-400">&gt;</span></div>;
+                                  } else if (line.includes("<")) {
+                                    // Handle XML tags with attributes
+                                    return (
+                                      <div key={i} className="text-blue-400 ml-2">{line.replace(/"([^"]*)"/g, '<span class="text-green-400">"$1"</span>')}</div>
+                                    );
+                                  } else if (line.includes("%dw")) {
+                                    return <div key={i} className="text-purple-400 ml-2">{line}</div>;
+                                  } else if (line.includes("output") || line.includes("---") || line.includes("payload")) {
+                                    return <div key={i} className="ml-2">{line}</div>;
+                                  } else if (line.includes("id:") || line.includes("fullName:") || line.includes("active:")) {
+                                    return <div key={i} className="ml-4">{line}</div>;
+                                  } else {
+                                    return <div key={i}>{line}</div>;
+                                  }
+                                })}
+                              </pre>
+                            </div>
                           </div>
                           
                           {/* Right side - Spring Boot code */}
-                          <div className="p-5 bg-slate-950 text-sm font-mono overflow-auto" style={{ maxHeight: "350px" }}>
-                            <pre className="whitespace-pre-wrap text-xs sm:text-sm">
-                              {example.springCode.split('\n').map((line, i) => {
-                                if (line.includes("//")) {
-                                  return <div key={i} className="text-slate-500">{line}</div>;
-                                } else if (line.includes("@")) {
-                                  return <div key={i} className="text-blue-400">{line.replace(/"([^"]*)"/g, '<span class="text-green-400">"$1"</span>')}</div>;
-                                } else if (line.includes("public") || line.includes("private") || line.includes("class")) {
-                                  return <div key={i} className="text-purple-400">{line.replace(/([A-Z][a-zA-Z0-9]*(?:<[^>]*>)?)/g, '<span class="text-yellow-400">$1</span>')}</div>;
-                                } else if (line.includes("return")) {
-                                  return <div key={i} className="text-yellow-400">{line.replace(/(\w+\.\w+\(\));/, '<span class="text-white">$1</span>')}</div>;
-                                } else {
-                                  return <div key={i}>{line}</div>;
-                                }
-                              })}
-                            </pre>
+                          <div className="p-5 bg-slate-950 text-sm font-mono" style={{ position: 'relative', height: "350px" }}>
+                            <div className="h-full overflow-auto pr-2 custom-scrollbar">
+                              <pre className="whitespace-pre-wrap text-xs sm:text-sm">
+                                {example.springCode.split('\n').map((line, i) => {
+                                  if (line.includes("//")) {
+                                    return <div key={i} className="text-slate-500">{line}</div>;
+                                  } else if (line.includes("@Component") || line.includes("@RestController") || line.includes("@ControllerAdvice")) {
+                                    return <div key={i} className="text-blue-400">{line}</div>;
+                                  } else if (line.includes("@")) {
+                                    return <div key={i} className="text-blue-400 ml-2">{line.replace(/"([^"]*)"/g, '<span class="text-green-400">"$1"</span>')}</div>;
+                                  } else if (line.includes("public class")) {
+                                    return <div key={i} className="text-purple-400">public class <span className="text-yellow-400">{line.match(/class\s+(\w+)/)?.[1] || ''}</span> {line.includes('{') ? '{' : ''}</div>;
+                                  } else if (line.includes("public") && line.includes("(")) {
+                                    const methodMatch = line.match(/public\s+(\w+(?:<[^>]*>)?)\s+(\w+)/);
+                                    if (methodMatch) {
+                                      return (
+                                        <div key={i} className="text-purple-400 ml-2">
+                                          public <span className="text-yellow-400">{methodMatch[1]}</span> {methodMatch[2]}
+                                          {line.includes('(') ? line.substring(line.indexOf('(')) : ''}
+                                        </div>
+                                      );
+                                    }
+                                  } else if (line.includes("return")) {
+                                    return <div key={i} className="text-yellow-400 ml-4">return <span className="text-white">{line.substring(line.indexOf('return') + 7)}</span></div>;
+                                  } else if (line.trim() === '}' || line.trim() === '});') {
+                                    return <div key={i} className={line.trim().length === 1 ? "" : "ml-2"}>{line}</div>;
+                                  } else if (line.includes("{") || line.includes("}")) {
+                                    return <div key={i} className="ml-2">{line}</div>;
+                                  } else if (line.includes(".map(") || line.includes(".id(") || line.includes(".fullName(") || line.includes(".active(") || line.includes(".build()") || line.includes(".collect(")) {
+                                    return <div key={i} className="ml-6">{line}</div>;
+                                  } else {
+                                    return <div key={i}>{line}</div>;
+                                  }
+                                })}
+                              </pre>
+                            </div>
                           </div>
                         </div>
                         
@@ -264,17 +295,37 @@ const TechnicalFeatureSection = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="flex justify-center gap-2 mt-4">
-                <CarouselPrevious className="static transform-none data-[disabled]:opacity-50 bg-slate-800 hover:bg-slate-700 border-slate-700" />
-                <div className="flex items-center gap-1">
+              <div className="flex justify-center items-center gap-4 mt-4">
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  className="h-10 w-10 rounded-full bg-slate-800/50 hover:bg-slate-700/60 border-0 text-slate-400 hover:text-white"
+                  onClick={() => api?.scrollPrev()}
+                >
+                  <FaChevronLeft className="h-4 w-4" />
+                </Button>
+                
+                <div className="flex items-center gap-2">
                   {codeExamples.map((_, i) => (
                     <div 
                       key={i} 
-                      className={`w-2 h-2 rounded-full ${i === activeExample ? 'bg-blue-500' : 'bg-slate-600'}`}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        i === activeExample 
+                          ? 'bg-blue-500 scale-125' 
+                          : 'bg-slate-600 opacity-60'
+                      }`}
                     />
                   ))}
                 </div>
-                <CarouselNext className="static transform-none data-[disabled]:opacity-50 bg-slate-800 hover:bg-slate-700 border-slate-700" />
+                
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  className="h-10 w-10 rounded-full bg-slate-800/50 hover:bg-slate-700/60 border-0 text-slate-400 hover:text-white"
+                  onClick={() => api?.scrollNext()}
+                >
+                  <FaChevronRight className="h-4 w-4" />
+                </Button>
               </div>
             </Carousel>
           </motion.div>
