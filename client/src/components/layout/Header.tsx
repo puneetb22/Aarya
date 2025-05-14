@@ -185,7 +185,7 @@ const Header = () => {
                   <FiMenu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-blue-900 border-l border-accent/20 w-[300px] sm:w-[350px] p-0 overflow-y-auto">
+              <SheetContent side="right" className="bg-blue-900 border-l border-accent/20 w-[300px] sm:w-[350px] p-0 overflow-y-auto [&>button]:hidden">
                 <div className="flex flex-col h-full">
                   <div className="p-4 border-b border-accent/20 flex justify-between items-center">
                     <div className="flex items-center">

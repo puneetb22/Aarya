@@ -57,7 +57,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12">
             <div className="max-w-md">
               <div className="flex items-center mb-6">
-                <Logo variant="full-white" className="h-14" />
+                <Logo variant="full-white" className="h-20 w-auto" />
               </div>
               <p className="text-gray-400 mb-8 text-sm leading-relaxed">
                 Aaryati Technologies specializes in automating the conversion of MuleSoft applications to Spring Boot, 
