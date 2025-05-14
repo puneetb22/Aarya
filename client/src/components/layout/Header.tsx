@@ -93,6 +93,20 @@ const DesktopNavItem: React.FC<{ item: any }> = ({ item }) => {
                       ? "text-primary font-medium" 
                       : "text-gray-300 hover:text-white"
                   )}
+                  onClick={(e) => {
+                    // If it's a hash link on the company page, handle scroll
+                    if (subItem.href.includes('/company#') || (location === '/company' && subItem.href.includes('#'))) {
+                      e.preventDefault();
+                      const sectionId = subItem.href.split('#')[1];
+                      const element = document.getElementById(sectionId);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      } else if (subItem.href.includes('/company#')) {
+                        // If we need to navigate to the company page first
+                        window.location.href = subItem.href;
+                      }
+                    }
+                  }}
                 >
                   {subItem.label}
                 </Link>
@@ -214,6 +228,20 @@ const Header = () => {
                                             ? "text-primary font-medium" 
                                             : "text-gray-400"
                                         )}
+                                        onClick={(e) => {
+                                          // If it's a hash link on the company page, handle scroll
+                                          if (subItem.href.includes('/company#') || (location === '/company' && subItem.href.includes('#'))) {
+                                            e.preventDefault();
+                                            const sectionId = subItem.href.split('#')[1];
+                                            const element = document.getElementById(sectionId);
+                                            if (element) {
+                                              element.scrollIntoView({ behavior: 'smooth' });
+                                            } else if (subItem.href.includes('/company#')) {
+                                              // If we need to navigate to the company page first
+                                              window.location.href = subItem.href;
+                                            }
+                                          }
+                                        }}
                                       >
                                         {subItem.label}
                                       </Link>

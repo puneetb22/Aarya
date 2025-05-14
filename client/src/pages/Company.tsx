@@ -93,7 +93,7 @@ const Company = () => {
       </section>
 
       {/* Our Story */}
-      <section className="py-20 bg-white">
+      <section id="about-us" className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -132,7 +132,7 @@ const Company = () => {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-gray-50">
+      <section id="our-culture" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">OUR VALUES</h2>
@@ -266,7 +266,7 @@ const Company = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 relative overflow-hidden bg-slate-900">
+      <section id="careers" className="py-16 lg:py-24 relative overflow-hidden bg-slate-900">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900 z-0"></div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
