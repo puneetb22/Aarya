@@ -1,7 +1,7 @@
 import React from 'react';
 import { default as aaryatiLogoPath } from '../../assets/aaryati-logo.png';
 import { default as aaryatiIconPath } from '../../assets/A.png';  
-import { default as aaryatiWhiteLogoPath } from '../../assets/Aaryati_full_white.png?v=1';
+import { default as aaryatiWhiteLogoPath } from '../../assets/Aaryati_full_white.png';
 
 interface LogoProps {
   variant?: 'icon' | 'full' | 'full-white';
@@ -24,7 +24,7 @@ const Logo: React.FC<LogoProps> = ({ variant = 'icon', className = '' }) => {
       <img 
         src={aaryatiWhiteLogoPath}
         alt="Aaryati Technologies" 
-        className={`h-12 ${className}`}
+        className={className}
       />
     );
   }
