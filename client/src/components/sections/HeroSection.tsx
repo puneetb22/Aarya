@@ -4,12 +4,17 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaCode, FaRocket, FaTools } from 'react-icons/fa';
 
+// Import the partner logos
+import datadogLogo from '../../assets/partner-logos/datadog.png';
+import kongLogo from '../../assets/partner-logos/kong.png';
+import grafanaLogo from '../../assets/partner-logos/grafana.png';
+
 const clientLogos = [
   "https://cdn-icons-png.flaticon.com/512/5969/5969059.png",   // IBM
-  "/assets/partner-logos/datadog.png",                        // DataDog
+  datadogLogo,                                                // DataDog
   "https://cdn-icons-png.flaticon.com/512/5968/5968705.png",  // SAP
-  "/assets/partner-logos/kong.png",                           // Kong
-  "/assets/partner-logos/grafana.png"                         // Grafana
+  kongLogo,                                                   // Kong
+  grafanaLogo                                                 // Grafana
 ];
 
 const HeroSection = () => {
@@ -76,8 +81,16 @@ const HeroSection = () => {
               <div className="flex flex-wrap gap-x-10 gap-y-6 items-center">
                 {clientLogos.map((logo, index) => (
                   <div key={index} className="flex">
-                    <img src={logo} alt={`Tech client logo ${index + 1}`} 
-                         className="h-5 md:h-6 opacity-70 grayscale hover:opacity-100 transition-opacity duration-300" />
+                    <img 
+                      src={logo} 
+                      alt={`Tech client logo ${index + 1}`} 
+                      className={`opacity-70 grayscale hover:opacity-100 transition-opacity duration-300 ${
+                        index === 1 ? 'h-7 md:h-8' : // DataDog needs to be a bit larger
+                        index === 3 ? 'h-6 md:h-7' : // Kong
+                        index === 4 ? 'h-5 md:h-6' : // Grafana
+                        'h-5 md:h-6'
+                      }`} 
+                    />
                   </div>
                 ))}
               </div>
