@@ -1,7 +1,7 @@
 import React from 'react';
 import { default as aaryatiLogoPath } from '../../assets/aaryati-logo.png';
 import { default as aaryatiIconPath } from '../../assets/A.png';  
-import { default as aaryatiWhiteLogoPath } from '../../assets/Aaryati_full_white.png';
+import { default as aaryatiWhiteLogoPath } from '../../assets/Aaryati_full_white.png?v=1';
 
 interface LogoProps {
   variant?: 'icon' | 'full' | 'full-white';
