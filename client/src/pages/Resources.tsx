@@ -50,20 +50,25 @@ const ResourceCard = ({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="overflow-hidden h-full flex flex-col bg-blue-900 text-white border-accent">
+      <Card className="overflow-hidden h-full flex flex-col bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white border-accent relative">
+        {/* Add subtle pattern/gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent opacity-30"></div>
+        
         {imageSrc && (
-          <div className="h-48 overflow-hidden">
+          <div className="h-48 overflow-hidden relative z-10">
             <img src={imageSrc} alt={title} className="w-full h-full object-cover transition-transform hover:scale-105" />
           </div>
         )}
-        <CardHeader>
+        <CardHeader className="relative z-10">
           <div className="flex items-center gap-2 mb-2">
-            {getIcon()}
-            <span className="text-sm font-medium text-gray-300">{type}</span>
+            <div className="bg-white/10 p-1.5 rounded-full">
+              {getIcon()}
+            </div>
+            <span className="text-sm font-medium text-blue-100">{type}</span>
             {date && (
               <>
-                <span className="mx-1 text-gray-400">•</span>
-                <span className="flex items-center text-sm text-gray-300">
+                <span className="mx-1 text-blue-200/60">•</span>
+                <span className="flex items-center text-sm text-blue-100">
                   <FaCalendarAlt className="mr-1 h-3 w-3" /> {date}
                 </span>
               </>
@@ -71,11 +76,11 @@ const ResourceCard = ({
           </div>
           <h3 className="text-xl font-bold text-white">{title}</h3>
         </CardHeader>
-        <CardContent className="flex-grow">
-          <p className="text-gray-300">{description}</p>
+        <CardContent className="flex-grow relative z-10">
+          <p className="text-blue-100/90">{description}</p>
         </CardContent>
-        <CardFooter className="pt-0">
-          <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-blue-200 font-medium group" asChild>
+        <CardFooter className="pt-0 relative z-10">
+          <Button variant="link" className="p-0 h-auto text-blue-200 hover:text-white font-medium group" asChild>
             <Link href={link}>
               <span>Learn more</span>
               <FaArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
@@ -547,11 +552,14 @@ const Resources = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <Card className="overflow-hidden h-full">
+                <Card className="overflow-hidden h-full shadow-md hover:shadow-lg transition-shadow duration-300">
                   <div className="flex flex-col h-full">
-                    <div className="bg-blue-900 text-white p-4">
-                      <span className="text-sm font-medium text-blue-300">{study.industry}</span>
-                      <h3 className="text-xl font-bold mt-1">{study.title}</h3>
+                    <div className="bg-gradient-to-r from-blue-600 to-indigo-800 text-white p-5 relative">
+                      {/* Add subtle gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent opacity-30"></div>
+                      
+                      <span className="text-sm font-medium text-blue-100 relative z-10 bg-blue-500/30 px-2 py-0.5 rounded-sm inline-block mb-1">{study.industry}</span>
+                      <h3 className="text-xl font-bold mt-1 relative z-10">{study.title}</h3>
                     </div>
                     <CardHeader className="pt-5">
                       <div className="text-sm text-blue-600 font-semibold mb-1">{study.company}</div>
