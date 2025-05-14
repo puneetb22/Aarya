@@ -169,11 +169,8 @@ const Resources = () => {
               <Button className="h-12 px-6 text-sm font-medium rounded-md bg-blue-500 hover:bg-blue-600" asChild>
                 <Link href="#blog">View Blog</Link>
               </Button>
-              <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-blue-500/40 bg-blue-500/10 text-blue-100 hover:bg-blue-500/20 hover:text-white transition-colors group" asChild>
-                <Link href="#documentation" className="flex items-center">
-                  <span>View Documentation</span>
-                  <FaArrowRight className="ml-2 h-3.5 w-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
-                </Link>
+              <Button variant="outline" className="h-12 px-6 text-sm font-medium rounded-md border-slate-700 bg-slate-900/60 hover:bg-slate-800/80 text-white" asChild>
+                <Link href="#documentation">View Documentation</Link>
               </Button>
             </div>
           </div>
@@ -617,7 +614,7 @@ const Resources = () => {
                   placeholder="Enter your email"
                   className="flex-grow px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-800"
                 />
-                <Button className="h-12 px-6 text-sm font-medium rounded-md bg-indigo-700 hover:bg-indigo-800 text-white transition-colors">
+                <Button className="h-12 px-6 text-sm font-medium rounded-md bg-slate-900 hover:bg-slate-800">
                   Subscribe
                 </Button>
               </div>
