@@ -175,7 +175,7 @@ const Header = () => {
           
           <div className="flex items-center space-x-3">
             <Button variant="default" className="rounded-md text-sm font-medium bg-slate-800 hover:bg-slate-700 text-white" asChild>
-              <Link href="#demo">Get a Demo</Link>
+              <Link href="/request-demo">Get a Demo</Link>
             </Button>
             
             {/* Mobile menu button */}
@@ -294,7 +294,7 @@ const Header = () => {
                   <div className="border-t border-accent/20 p-4 space-y-3">
                     <SheetClose asChild>
                       <Button className="w-full text-sm rounded-md bg-slate-800 hover:bg-slate-700 text-white" asChild>
-                        <Link href="#demo">Get a Demo</Link>
+                        <Link href="/request-demo">Get a Demo</Link>
                       </Button>
                     </SheetClose>
                   </div>

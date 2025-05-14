@@ -31,7 +31,7 @@ const FeatureHighlight = () => {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="group rounded-md h-11 bg-blue-500 hover:bg-blue-600" asChild>
-                <Link href="#request-demo">
+                <Link href="/request-demo">
                   <span>Request Demo</span>
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>

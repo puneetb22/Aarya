@@ -61,7 +61,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Button className="h-12 px-6 text-sm font-medium rounded-md bg-blue-500 hover:bg-blue-600 group" asChild>
-                <Link href="#request-demo">
+                <Link href="/request-demo">
                   <span>Request Demo</span>
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>

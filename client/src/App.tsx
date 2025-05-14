@@ -11,6 +11,7 @@ import FinancialServices from "@/pages/Solutions/FinancialServices";
 import Resources from "@/pages/Resources";
 import Company from "@/pages/Company";
 import ContactUs from "@/pages/ContactUs";
+import RequestDemo from "@/pages/RequestDemo";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/resources" component={Resources} />
           <Route path="/company" component={Company} />
           <Route path="/contact" component={ContactUs} />
+          <Route path="/request-demo" component={RequestDemo} />
           <Route component={NotFound} />
         </Switch>
       </main>
