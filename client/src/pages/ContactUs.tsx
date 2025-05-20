@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Button } from '@/components/ui/button';
@@ -54,9 +54,47 @@ const ContactUs = () => {
     },
   });
 
+  const [topicValue, setTopicValue] = React.useState("");
+
+  // Add an effect to handle the topic value
+  useEffect(() => {
+    form.watch((data) => {
+      if (data.topic) {
+        setTopicValue(data.topic as string);
+      }
+    });
+  }, [form]);
+
   const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // Form data will be handled by Netlify's form processing
+    // Prevent the default form handling
+    console.log("Form data:", data);
+    
+    // Create a plain object from form data
+    const formData = new FormData();
+    
+    // Add form-name field which is required for Netlify
+    formData.append("form-name", "contact");
+    
+    // Add all fields from the form data
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value?.toString() || "");
+    });
+    
+    // Submit the form data to Netlify
+    fetch("/", {
+      method: "POST",
+      body: formData
+    })
+      .then(() => {
+        // Handle successful form submission
+        alert("Thank you for your message! We will get back to you shortly.");
+        form.reset();
+      })
+      .catch((error) => {
+        // Handle form submission error
+        alert("Oops! There was a problem submitting your form. Please try again.");
+        console.error("Form submission error:", error);
+      });
   };
 
   return (
@@ -191,12 +229,12 @@ const ContactUs = () => {
                 
                 <Form {...form}>
                   <form 
-                    onSubmit={form.handleSubmit(onSubmit)} 
-                    className="space-y-6"
                     name="contact"
                     method="POST"
                     data-netlify="true"
                     netlify-honeypot="bot-field"
+                    onSubmit={form.handleSubmit(onSubmit)} 
+                    className="space-y-6"
                   >
                     {/* Hidden input for netlify form handling */}
                     <input type="hidden" name="form-name" value="contact" />
@@ -271,7 +309,13 @@ const ContactUs = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Topic</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select 
+                              onValueChange={(value) => {
+                                field.onChange(value);
+                                setTopicValue(value);
+                              }} 
+                              defaultValue={field.value}
+                            >
                               <FormControl>
                                 <SelectTrigger className="bg-slate-800/50 border-accent/30 focus:border-primary/70">
                                   <SelectValue placeholder="Select a topic" />
@@ -286,7 +330,7 @@ const ContactUs = () => {
                               </SelectContent>
                             </Select>
                             {/* Hidden input to capture the selected value for Netlify */}
-                            <input type="hidden" name="topic" value={field.value} />
+                            <input type="hidden" name="topic" value={topicValue} />
                             <FormMessage />
                           </FormItem>
                         )}
