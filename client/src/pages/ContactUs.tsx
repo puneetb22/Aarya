@@ -191,7 +191,7 @@ const ContactUs = () => {
               <div className="bg-slate-900/80 backdrop-blur-sm border border-accent/20 rounded-xl p-8">
                 <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
                 
-                <Form {...form}>
+                <Form {...form} netlify>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <FormField
@@ -317,11 +317,11 @@ const ContactUs = () => {
                 <div className="max-w-md mx-auto">
                   <h3 className="text-xl font-semibold mb-2">Our Location</h3>
                   <p className="text-gray-400 mb-4">
-                    Our headquarters is located in the heart of Silicon Valley, California.
+                    Our headquarters is located in the heart of India.
                   </p>
                   <div className="inline-flex items-center text-primary">
                     <FaMapMarkerAlt className="mr-2" />
-                    <span>123 Tech Park, Silicon Valley, CA</span>
+                    <span>Kharadi, Pune, Maharashtra, IN</span>
                   </div>
                 </div>
               </div>
