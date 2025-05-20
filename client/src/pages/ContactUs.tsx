@@ -66,35 +66,14 @@ const ContactUs = () => {
   }, [form]);
 
   const onSubmit = (data: FormValues) => {
-    // Prevent the default form handling
+    // Prevent the default form handling - we'll let the native HTML form submission work
     console.log("Form data:", data);
     
-    // Create a plain object from form data
-    const formData = new FormData();
+    // Netlify will handle the form submission through the native HTML form submit
+    // No need for fetch() - just let the form do its job
     
-    // Add form-name field which is required for Netlify
-    formData.append("form-name", "contact");
-    
-    // Add all fields from the form data
-    Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value?.toString() || "");
-    });
-    
-    // Submit the form data to Netlify
-    fetch("/", {
-      method: "POST",
-      body: formData
-    })
-      .then(() => {
-        // Handle successful form submission
-        alert("Thank you for your message! We will get back to you shortly.");
-        form.reset();
-      })
-      .catch((error) => {
-        // Handle form submission error
-        alert("Oops! There was a problem submitting your form. Please try again.");
-        console.error("Form submission error:", error);
-      });
+    // If you want to do something after submission, you can add a redirect or other logic
+    // in your netlify.toml file or in the Netlify dashboard
   };
 
   return (
@@ -233,7 +212,46 @@ const ContactUs = () => {
                     method="POST"
                     data-netlify="true"
                     netlify-honeypot="bot-field"
-                    onSubmit={form.handleSubmit(onSubmit)} 
+                    action="/success" 
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      form.handleSubmit((data) => {
+                        console.log("Form submitted:", data);
+                        // Create and append a hidden form
+                        const formElement = document.createElement('form');
+                        formElement.method = 'POST';
+                        formElement.action = '/success';
+                        formElement.setAttribute('data-netlify', 'true');
+                        formElement.setAttribute('hidden', 'true');
+                        
+                        // Add the form-name input
+                        const formNameInput = document.createElement('input');
+                        formNameInput.type = 'hidden';
+                        formNameInput.name = 'form-name';
+                        formNameInput.value = 'contact';
+                        formElement.appendChild(formNameInput);
+                        
+                        // Add all form fields
+                        Object.entries(data).forEach(([key, value]) => {
+                          const input = document.createElement('input');
+                          input.type = 'hidden';
+                          input.name = key;
+                          input.value = value?.toString() || '';
+                          formElement.appendChild(input);
+                        });
+                        
+                        // Append the form to the document
+                        document.body.appendChild(formElement);
+                        
+                        // Submit the form
+                        formElement.submit();
+                        
+                        // Clean up
+                        setTimeout(() => {
+                          document.body.removeChild(formElement);
+                        }, 1000);
+                      })(e);
+                    }}
                     className="space-y-6"
                   >
                     {/* Hidden input for netlify form handling */}
