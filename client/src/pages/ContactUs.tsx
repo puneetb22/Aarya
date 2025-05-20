@@ -212,57 +212,71 @@ const ContactUs = () => {
                     method="POST"
                     data-netlify="true"
                     netlify-honeypot="bot-field"
-                    action="/success" 
                     onSubmit={(e) => {
                       e.preventDefault();
                       form.handleSubmit((data) => {
                         console.log("Form submitted:", data);
-                        // Create and append a hidden form
+                        
+                        // Create a traditional form element from scratch for submission
                         const formElement = document.createElement('form');
+                        
+                        // Set the form's attributes
                         formElement.method = 'POST';
-                        formElement.action = '/success';
+                        formElement.action = '/'; // Submit to current page
                         formElement.setAttribute('data-netlify', 'true');
-                        formElement.setAttribute('hidden', 'true');
+                        formElement.style.display = 'none'; // Hide the form
                         
-                        // Add the form-name input
-                        const formNameInput = document.createElement('input');
-                        formNameInput.type = 'hidden';
-                        formNameInput.name = 'form-name';
-                        formNameInput.value = 'contact';
-                        formElement.appendChild(formNameInput);
+                        // Add required Netlify input
+                        let formHTML = `<input type="hidden" name="form-name" value="contact" />`;
                         
-                        // Add all form fields
+                        // Add all validated form fields as hidden inputs
                         Object.entries(data).forEach(([key, value]) => {
-                          const input = document.createElement('input');
-                          input.type = 'hidden';
-                          input.name = key;
-                          input.value = value?.toString() || '';
-                          formElement.appendChild(input);
+                          // Safely escape the value to prevent XSS
+                          const safeValue = value?.toString()
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&#039;') || '';
+                            
+                          formHTML += `<input type="hidden" name="${key}" value="${safeValue}" />`;
                         });
                         
-                        // Append the form to the document
-                        document.body.appendChild(formElement);
+                        formElement.innerHTML = formHTML;
                         
-                        // Submit the form
-                        formElement.submit();
+                        // Add to the document, submit the form, then clean up
+                        document.body.append(formElement);
                         
-                        // Clean up
-                        setTimeout(() => {
-                          document.body.removeChild(formElement);
-                        }, 1000);
+                        try {
+                          formElement.submit();
+                          
+                          // Show success message on a short delay to let Netlify process
+                          setTimeout(() => {
+                            alert('Thank you for your message! We will get back to you shortly.');
+                            form.reset();
+                          }, 500);
+                        } catch (error) {
+                          console.error('Form submission error:', error);
+                          alert('Oops! There was a problem submitting your form. Please try again.');
+                        } finally {
+                          // Clean up the form element
+                          setTimeout(() => {
+                            if (document.body.contains(formElement)) {
+                              document.body.removeChild(formElement);
+                            }
+                          }, 1000);
+                        }
                       })(e);
                     }}
                     className="space-y-6"
                   >
-                    {/* Hidden input for netlify form handling */}
+                    {/* Hidden fields for Netlify form handling */}
                     <input type="hidden" name="form-name" value="contact" />
-                    
-                    {/* Honeypot field to prevent spam */}
-                    <p className="hidden">
+                    <div style={{ display: 'none' }}>
                       <label>
                         Don't fill this out if you're human: <input name="bot-field" />
                       </label>
-                    </p>
+                    </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <FormField
