@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Button } from '@/components/ui/button';
@@ -54,26 +54,11 @@ const ContactUs = () => {
     },
   });
 
-  const [topicValue, setTopicValue] = React.useState("");
-
-  // Add an effect to handle the topic value
-  useEffect(() => {
-    form.watch((data) => {
-      if (data.topic) {
-        setTopicValue(data.topic as string);
-      }
-    });
-  }, [form]);
-
   const onSubmit = (data: FormValues) => {
-    // Prevent the default form handling - we'll let the native HTML form submission work
-    console.log("Form data:", data);
-    
-    // Netlify will handle the form submission through the native HTML form submit
-    // No need for fetch() - just let the form do its job
-    
-    // If you want to do something after submission, you can add a redirect or other logic
-    // in your netlify.toml file or in the Netlify dashboard
+    console.log(data);
+    // In a real implementation, this would send the form data to your backend
+    alert('Thank you for your message! We will get back to you shortly.');
+    form.reset();
   };
 
   return (
@@ -206,78 +191,8 @@ const ContactUs = () => {
               <div className="bg-slate-900/80 backdrop-blur-sm border border-accent/20 rounded-xl p-8">
                 <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
                 
-                <Form {...form}>
-                  <form 
-                    name="contact"
-                    method="POST"
-                    data-netlify="true"
-                    netlify-honeypot="bot-field"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      form.handleSubmit((data) => {
-                        console.log("Form submitted:", data);
-                        
-                        // Create a traditional form element from scratch for submission
-                        const formElement = document.createElement('form');
-                        
-                        // Set the form's attributes
-                        formElement.method = 'POST';
-                        formElement.action = '/'; // Submit to current page
-                        formElement.setAttribute('data-netlify', 'true');
-                        formElement.style.display = 'none'; // Hide the form
-                        
-                        // Add required Netlify input
-                        let formHTML = `<input type="hidden" name="form-name" value="contact" />`;
-                        
-                        // Add all validated form fields as hidden inputs
-                        Object.entries(data).forEach(([key, value]) => {
-                          // Safely escape the value to prevent XSS
-                          const safeValue = value?.toString()
-                            .replace(/&/g, '&amp;')
-                            .replace(/</g, '&lt;')
-                            .replace(/>/g, '&gt;')
-                            .replace(/"/g, '&quot;')
-                            .replace(/'/g, '&#039;') || '';
-                            
-                          formHTML += `<input type="hidden" name="${key}" value="${safeValue}" />`;
-                        });
-                        
-                        formElement.innerHTML = formHTML;
-                        
-                        // Add to the document, submit the form, then clean up
-                        document.body.append(formElement);
-                        
-                        try {
-                          formElement.submit();
-                          
-                          // Show success message on a short delay to let Netlify process
-                          setTimeout(() => {
-                            alert('Thank you for your message! We will get back to you shortly.');
-                            form.reset();
-                          }, 500);
-                        } catch (error) {
-                          console.error('Form submission error:', error);
-                          alert('Oops! There was a problem submitting your form. Please try again.');
-                        } finally {
-                          // Clean up the form element
-                          setTimeout(() => {
-                            if (document.body.contains(formElement)) {
-                              document.body.removeChild(formElement);
-                            }
-                          }, 1000);
-                        }
-                      })(e);
-                    }}
-                    className="space-y-6"
-                  >
-                    {/* Hidden fields for Netlify form handling */}
-                    <input type="hidden" name="form-name" value="contact" />
-                    <div style={{ display: 'none' }}>
-                      <label>
-                        Don't fill this out if you're human: <input name="bot-field" />
-                      </label>
-                    </div>
-                    
+                <Form {...form} netlify>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <FormField
                         control={form.control}
@@ -289,7 +204,6 @@ const ContactUs = () => {
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
                                 {...field}
-                                name="name"
                               />
                             </FormControl>
                             <FormMessage />
@@ -307,7 +221,6 @@ const ContactUs = () => {
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
                                 {...field}
-                                name="email"
                               />
                             </FormControl>
                             <FormMessage />
@@ -327,7 +240,6 @@ const ContactUs = () => {
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
                                 {...field}
-                                name="company"
                               />
                             </FormControl>
                             <FormMessage />
@@ -341,13 +253,7 @@ const ContactUs = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Topic</FormLabel>
-                            <Select 
-                              onValueChange={(value) => {
-                                field.onChange(value);
-                                setTopicValue(value);
-                              }} 
-                              defaultValue={field.value}
-                            >
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger className="bg-slate-800/50 border-accent/30 focus:border-primary/70">
                                   <SelectValue placeholder="Select a topic" />
@@ -361,8 +267,6 @@ const ContactUs = () => {
                                 <SelectItem value="partnership">Partnership Opportunities</SelectItem>
                               </SelectContent>
                             </Select>
-                            {/* Hidden input to capture the selected value for Netlify */}
-                            <input type="hidden" name="topic" value={topicValue} />
                             <FormMessage />
                           </FormItem>
                         )}
@@ -379,7 +283,6 @@ const ContactUs = () => {
                             <Textarea
                               className="min-h-[150px] bg-slate-800/50 border-accent/30 focus:border-primary/70"
                               {...field}
-                              name="message"
                             />
                           </FormControl>
                           <FormMessage />
