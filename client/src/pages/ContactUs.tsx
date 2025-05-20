@@ -56,9 +56,7 @@ const ContactUs = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
-    // In a real implementation, this would send the form data to your backend
-    alert('Thank you for your message! We will get back to you shortly.');
-    form.reset();
+    // Form data will be handled by Netlify's form processing
   };
 
   return (
@@ -191,8 +189,25 @@ const ContactUs = () => {
               <div className="bg-slate-900/80 backdrop-blur-sm border border-accent/20 rounded-xl p-8">
                 <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
                 
-                <Form {...form} netlify>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <Form {...form}>
+                  <form 
+                    onSubmit={form.handleSubmit(onSubmit)} 
+                    className="space-y-6"
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                  >
+                    {/* Hidden input for netlify form handling */}
+                    <input type="hidden" name="form-name" value="contact" />
+                    
+                    {/* Honeypot field to prevent spam */}
+                    <p className="hidden">
+                      <label>
+                        Don't fill this out if you're human: <input name="bot-field" />
+                      </label>
+                    </p>
+                    
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <FormField
                         control={form.control}
@@ -204,6 +219,7 @@ const ContactUs = () => {
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
                                 {...field}
+                                name="name"
                               />
                             </FormControl>
                             <FormMessage />
@@ -221,6 +237,7 @@ const ContactUs = () => {
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
                                 {...field}
+                                name="email"
                               />
                             </FormControl>
                             <FormMessage />
@@ -240,6 +257,7 @@ const ContactUs = () => {
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
                                 {...field}
+                                name="company"
                               />
                             </FormControl>
                             <FormMessage />
@@ -267,6 +285,8 @@ const ContactUs = () => {
                                 <SelectItem value="partnership">Partnership Opportunities</SelectItem>
                               </SelectContent>
                             </Select>
+                            {/* Hidden input to capture the selected value for Netlify */}
+                            <input type="hidden" name="topic" value={field.value} />
                             <FormMessage />
                           </FormItem>
                         )}
@@ -283,6 +303,7 @@ const ContactUs = () => {
                             <Textarea
                               className="min-h-[150px] bg-slate-800/50 border-accent/30 focus:border-primary/70"
                               {...field}
+                              name="message"
                             />
                           </FormControl>
                           <FormMessage />
