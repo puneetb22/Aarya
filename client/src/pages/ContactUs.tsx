@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Button } from '@/components/ui/button';
@@ -43,6 +43,22 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const ContactUs = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Your actual Google Form configuration
+  const GOOGLE_FORM_CONFIG = {
+    formId: '1FAIpQLSe2x_ZdDtPPVNLa_rz-hZhZksxVEO5B4URwS5Y-7_lZuTOBaw',
+    entries: {
+      name: 'entry.1478555181',      // Name field
+      email: 'entry.566425268',      // Email field
+      company: 'entry.708898817',    // Company field
+      topic: 'entry.1522730933',     // Topic field
+      message: 'entry.1796562371',   // Message field
+      // entry.843886709 - appears to be an extra field, you can use it if needed
+    }
+  };
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,11 +70,55 @@ const ContactUs = () => {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // In a real implementation, this would send the form data to your backend
-    alert('Thank you for your message! We will get back to you shortly.');
-    form.reset();
+  const submitToGoogleForm = async (data: FormValues) => {
+    const formData = new FormData();
+    
+    // Map form data to Google Form entries
+    formData.append(GOOGLE_FORM_CONFIG.entries.name, data.name);
+    formData.append(GOOGLE_FORM_CONFIG.entries.email, data.email);
+    formData.append(GOOGLE_FORM_CONFIG.entries.company, data.company || '');
+    formData.append(GOOGLE_FORM_CONFIG.entries.topic, data.topic);
+    formData.append(GOOGLE_FORM_CONFIG.entries.message, data.message);
+
+    const googleFormUrl = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_CONFIG.formId}/formResponse`;
+
+    try {
+      // Submit to Google Form
+      await fetch(googleFormUrl, {
+        method: 'POST',
+        mode: 'no-cors', // Important: Google Forms requires no-cors mode
+        body: formData,
+      });
+      
+      return true;
+    } catch (error) {
+      console.error('Error submitting to Google Form:', error);
+      return false;
+    }
+  };
+
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const success = await submitToGoogleForm(data);
+      
+      if (success) {
+        setSubmitStatus('success');
+        form.reset();
+        
+        // Optional: Also log to console or send to your own backend
+        console.log('Form submitted successfully:', data);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -191,7 +251,20 @@ const ContactUs = () => {
               <div className="bg-slate-900/80 backdrop-blur-sm border border-accent/20 rounded-xl p-8">
                 <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
                 
-                <Form {...form} netlify>
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg">
+                    <p className="text-green-400">✅ Thank you! Your message has been sent successfully.</p>
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-900/20 border border-red-500/30 rounded-lg">
+                    <p className="text-red-400">❌ There was an error sending your message. Please try again.</p>
+                  </div>
+                )}
+                
+                <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <FormField
@@ -203,6 +276,7 @@ const ContactUs = () => {
                             <FormControl>
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
+                                disabled={isSubmitting}
                                 {...field}
                               />
                             </FormControl>
@@ -220,6 +294,7 @@ const ContactUs = () => {
                             <FormControl>
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
+                                disabled={isSubmitting}
                                 {...field}
                               />
                             </FormControl>
@@ -239,6 +314,7 @@ const ContactUs = () => {
                             <FormControl>
                               <Input
                                 className="bg-slate-800/50 border-accent/30 focus:border-primary/70"
+                                disabled={isSubmitting}
                                 {...field}
                               />
                             </FormControl>
@@ -253,7 +329,11 @@ const ContactUs = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Topic</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select 
+                              onValueChange={field.onChange} 
+                              defaultValue={field.value}
+                              disabled={isSubmitting}
+                            >
                               <FormControl>
                                 <SelectTrigger className="bg-slate-800/50 border-accent/30 focus:border-primary/70">
                                   <SelectValue placeholder="Select a topic" />
@@ -282,6 +362,7 @@ const ContactUs = () => {
                           <FormControl>
                             <Textarea
                               className="min-h-[150px] bg-slate-800/50 border-accent/30 focus:border-primary/70"
+                              disabled={isSubmitting}
                               {...field}
                             />
                           </FormControl>
@@ -293,10 +374,11 @@ const ContactUs = () => {
                     <div className="pt-2">
                       <Button 
                         type="submit" 
-                        className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white"
+                        className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white disabled:opacity-50"
                         size="lg"
+                        disabled={isSubmitting}
                       >
-                        Submit Message
+                        {isSubmitting ? 'Sending...' : 'Submit Message'}
                       </Button>
                     </div>
                   </form>
